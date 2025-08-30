@@ -6,6 +6,7 @@ import { motion, Variants, Transition } from 'framer-motion'; // Import 'Transit
 import Link from 'next/link';
 import { ArrowRight, Cpu, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import FloatingShapes from '../components/FloatingShapes';
 
 // Define types for animation props
 const pageVariants: Variants = {
@@ -70,7 +71,8 @@ const Home = () => {
       <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <div className="absolute inset-0 bg-hero-grid-light dark:bg-hero-grid-dark opacity-40"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
-        
+        <FloatingShapes /> 
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
