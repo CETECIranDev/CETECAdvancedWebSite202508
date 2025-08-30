@@ -1,14 +1,13 @@
-// components/AnimatedSection.tsx
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion'; // 1. Variants را import کنید
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
-  variants?: any;
+  variants?: Variants; // 2. از تایپ Variants استفاده کنید
   threshold?: number;
 }
 
-const defaultVariants = {
+const defaultVariants: Variants = { // 3. به متغیر هم تایپ بدهید
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };

@@ -1,42 +1,58 @@
-// pages/products/smart-vtol-drone.tsx
 import React from 'react';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { motion } from 'framer-motion';
+// Import 'Variants' and 'ViewportOptions' for correct typing
+import { motion, Variants, ViewportOptions } from 'framer-motion';
 import { Map, Wind, Eye, BatteryCharging, Download } from 'lucide-react';
 import Link from 'next/link';
 import InteractiveAnatomy from '../../components/InteractiveAnatomy';
+import Image from 'next/image'; // Import Next.js Image component
 
-const fadeIn = {
+// 1. Define the viewport options with the correct type
+const viewportSettings: ViewportOptions = { once: true, amount: 0.2 };
+
+// 2. Define animation variants with the correct type and a valid 'ease' value
+const fadeIn: Variants = {
   initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.7, ease: 'easeOut' },
+  whileInView: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.22, 1, 0.36, 1] // Use a valid cubic-bezier
+    } 
+  },
 };
 
 const CapabilityCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
-  <motion.div variants={fadeIn} className="bg-card-dark p-8 rounded-2xl border border-border-dark text-center flex flex-col items-center">
-    <div className="bg-primary-dark/10 text-primary-dark p-4 rounded-full mb-4">{icon}</div>
-    <h3 className="text-2xl font-bold mb-2">{title}</h3>
-    <p className="text-subtle-dark flex-grow">{description}</p>
+  <motion.div 
+    variants={fadeIn}
+    initial="initial"
+    whileInView="whileInView"
+    viewport={viewportSettings}
+    className="bg-card p-8 rounded-2xl border border-border text-center flex flex-col items-center"
+  >
+    <div className="bg-primary/10 text-primary p-4 rounded-full mb-4">{icon}</div>
+    <h3 className="text-2xl font-bold mb-2 text-foreground">{title}</h3>
+    <p className="text-muted-foreground flex-grow">{description}</p>
   </motion.div>
 );
 
 const SmartVtolDronePage = () => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-background-dark text-text-dark">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-background text-foreground">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center text-center text-white p-6 overflow-hidden">
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10 opacity-40">
+      <section className="relative h-screen flex items-center justify-center text-center p-6 overflow-hidden">
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10 opacity-20 dark:opacity-40">
           <source src="/videos/drone-flight.mp4" type="video/mp4" />
         </video>
-       <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent -z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent -z-10"></div>
 
         <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
-            <h1 className="text-5xl md:text-8xl font-extrabold tracking-tighter text-foreground">
+          <h1 className="text-5xl md:text-8xl font-extrabold tracking-tighter text-foreground">
             HORIZON VTOL X1
           </h1>
-        <p className="text-xl md:text-2xl max-w-3xl mx-auto mt-4 text-muted-foreground font-light">
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto mt-4 text-muted-foreground font-light">
             پهپاد هوشمند عمود پرواز: نسل جدید نظارت و نقشه‌برداری هوایی
           </p>
         </motion.div>
@@ -45,19 +61,30 @@ const SmartVtolDronePage = () => {
       {/* Innovation Intro */}
       <section className="py-24">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <motion.div {...fadeIn}>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+          >
             <h2 className="text-4xl font-bold mb-6">
               پرواز و فرود عمودی.
               <br />
-              <span className="text-primary-dark">انعطاف‌پذیری بی‌نهایت.</span>
+              <span className="text-primary">انعطاف‌پذیری بی‌نهایت.</span>
             </h2>
-            <p className="text-lg text-subtle-dark">
+            <p className="text-lg text-muted-foreground">
               فناوری VTOL به پهپاد Horizon X1 اجازه می‌دهد تا مانند یک هلیکوپتر از هر مکانی بلند شود و فرود آید، و سپس مانند یک هواپیما با سرعت و مداومت بالا پرواز کند. این یعنی دسترسی به مناطقی که قبلاً غیرممکن بود.
             </p>
           </motion.div>
-          <motion.div {...fadeIn} className="h-80 bg-card-dark rounded-2xl flex items-center justify-center">
-            {/* Placeholder for a cool animation or graphic */}
-            <img src="/images/vtol-animation.svg" alt="VTOL Animation" className="w-2/3" />
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="relative h-80 rounded-2xl flex items-center justify-center"
+          >
+            {/* Using next/image to fix the warning */}
+            <Image src="/images/vtol-animation.svg" layout="fill" objectFit="contain" alt="VTOL Animation" />
           </motion.div>
         </div>
       </section>
@@ -65,15 +92,31 @@ const SmartVtolDronePage = () => {
       {/* Interactive Anatomy Section */}
       <section className="py-24">
         <div className="container mx-auto px-6 text-center">
-          <motion.h2 {...fadeIn} className="text-4xl font-bold mb-20">آناتومی یک پرنده شکاری</motion.h2>
+          <motion.h2 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="text-4xl font-bold mb-20"
+          >
+            آناتومی یک پرنده شکاری
+          </motion.h2>
           <InteractiveAnatomy />
         </div>
       </section>
       
       {/* Key Capabilities Section */}
-      <section className="py-24 bg-card-dark">
+      <section className="py-24 bg-muted">
         <div className="container mx-auto px-6">
-          <motion.h2 {...fadeIn} className="text-4xl font-bold text-center mb-16">ساخته شده برای ماموریت‌های ناممکن</motion.h2>
+          <motion.h2 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="text-4xl font-bold text-center mb-16"
+          >
+            ساخته شده برای ماموریت‌های ناممکن
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <CapabilityCard icon={<Eye size={32} />} title="ناوبری هوشمند AI" description="سیستم اجتناب از موانع سه‌بعدی و دنبال کردن خودکار اهداف با هوش مصنوعی." />
             <CapabilityCard icon={<Map size={32} />} title="نقشه‌برداری دقیق" description="ایجاد مدل‌های سه‌بعدی و نقشه‌های ارتوموزائیک با دقت سانتی‌متری." />
@@ -86,43 +129,47 @@ const SmartVtolDronePage = () => {
       {/* Tech Specs Table */}
       <section className="py-24">
         <div className="container mx-auto px-6">
-          <motion.h2 {...fadeIn} className="text-4xl font-bold text-center mb-12">مشخصات فنی</motion.h2>
-          <motion.div {...fadeIn} className="max-w-3xl mx-auto bg-card-dark border border-border-dark rounded-2xl overflow-hidden">
-            <div className="divide-y divide-border-dark">
-              <div className="grid grid-cols-3 p-4">
-                <span className="font-bold text-subtle-dark col-span-1">وزن برخاست</span>
-                <span className="col-span-2">7.5 کیلوگرم</span>
-              </div>
-              <div className="grid grid-cols-3 p-4">
-                <span className="font-bold text-subtle-dark col-span-1">مداومت پروازی</span>
-                <span className="col-span-2">45-55 دقیقه</span>
-              </div>
-              <div className="grid grid-cols-3 p-4">
-                <span className="font-bold text-subtle-dark col-span-1">حداکثر سرعت</span>
-                <span className="col-span-2">100 کیلومتر بر ساعت</span>
-              </div>
-              <div className="grid grid-cols-3 p-4">
-                <span className="font-bold text-subtle-dark col-span-1">دوربین اصلی</span>
-                <span className="col-span-2">سنسور 1 اینچ، 20 مگاپیکسل، ویدیو 4K</span>
-              </div>
-               <div className="grid grid-cols-3 p-4">
-                <span className="font-bold text-subtle-dark col-span-1">محدوده ارتباطی</span>
-                <span className="col-span-2">15 کیلومتر (HD Video Link)</span>
-              </div>
+          <motion.h2 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="text-4xl font-bold text-center mb-12"
+          >
+            مشخصات فنی
+          </motion.h2>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="max-w-3xl mx-auto bg-card border border-border rounded-2xl overflow-hidden"
+          >
+            <div className="divide-y divide-border">
+              <div className="grid grid-cols-3 p-4"><span className="font-bold text-muted-foreground col-span-1">وزن برخاست</span><span className="col-span-2">7.5 کیلوگرم</span></div>
+              <div className="grid grid-cols-3 p-4"><span className="font-bold text-muted-foreground col-span-1">مداومت پروازی</span><span className="col-span-2">45-55 دقیقه</span></div>
+              <div className="grid grid-cols-3 p-4"><span className="font-bold text-muted-foreground col-span-1">حداکثر سرعت</span><span className="col-span-2">100 کیلومتر بر ساعت</span></div>
+              <div className="grid grid-cols-3 p-4"><span className="font-bold text-muted-foreground col-span-1">دوربین اصلی</span><span className="col-span-2">سنسور 1 اینچ، 20 مگاپیکسل، ویدیو 4K</span></div>
+              <div className="grid grid-cols-3 p-4"><span className="font-bold text-muted-foreground col-span-1">محدوده ارتباطی</span><span className="col-span-2">15 کیلومتر (HD Video Link)</span></div>
             </div>
           </motion.div>
         </div>
       </section>
       
       {/* CTA Section */}
-      <section className="py-24 text-center">
+      <section className="py-24 text-center bg-muted">
         <div className="container mx-auto px-6">
-          <motion.div {...fadeIn}>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+          >
             <h2 className="text-4xl font-bold mb-4">آسمان، دیگر محدودیت نیست.</h2>
-            <p className="text-lg max-w-2xl mx-auto text-subtle-dark mb-8">
+            <p className="text-lg max-w-2xl mx-auto text-muted-foreground mb-8">
               برای دریافت کاتالوگ فنی کامل و مشاوره با کارشناسان ما، همین امروز اقدام کنید.
             </p>
-            <Link href="/contact" className="group inline-flex items-center gap-2 bg-primary-dark hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg">
+            <Link href="/contact" className="group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg">
               دریافت کاتالوگ <Download className="group-hover:translate-y-0.5 transition-transform" />
             </Link>
           </motion.div>

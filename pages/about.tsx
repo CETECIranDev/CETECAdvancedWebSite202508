@@ -1,25 +1,37 @@
 import React from 'react';
+// Corrected import path for GetStaticProps
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { motion } from 'framer-motion';
+import { motion, Variants, ViewportOptions } from 'framer-motion';
 import { Target, Eye, Lightbulb, Users, Handshake, Link as LinkIcon } from 'lucide-react';
 import Timeline from '../components/Timeline';
 import ContactForms from '../components/ContactForms';
-import FloatingShapes from '../components/FloatingShapes'; // Import for background animation
-import Link from 'next/link';
+import FloatingShapes from '../components/FloatingShapes';
+// The unused 'Link' import is removed.
 
-// Animation variants for sections
-const fadeIn = {
+// 1. Define the viewport options with the correct type
+const viewportSettings: ViewportOptions = { once: true, amount: 0.3 };
+
+// 2. Define animation variants with the correct type. 'viewport' is a prop, not a variant.
+const fadeIn: Variants = {
   initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.7, ease: 'easeOut' },
+  whileInView: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.22, 1, 0.36, 1] // Using a valid cubic-bezier
+    } 
+  },
 };
 
 // Reusable ValueCard component for this page
 const ValueCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
   <motion.div 
     variants={fadeIn} 
+    initial="initial"
+    whileInView="whileInView"
+    viewport={viewportSettings} // 3. Apply the correctly typed viewport prop
     className="bg-card p-8 rounded-2xl border border-border text-center flex flex-col items-center"
   >
     <div className="bg-primary/10 text-primary p-4 rounded-full mb-4">{icon}</div>
@@ -39,7 +51,6 @@ const AboutPage = () => {
       <section className="relative h-[70vh] flex items-center justify-center text-center p-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/20 via-slate-900/20 to-background -z-10 dark:from-indigo-950 dark:via-slate-900 dark:to-background"></div>
         <FloatingShapes />
-        
         <motion.div 
           initial={{ y: 50, opacity: 0 }} 
           animate={{ y: 0, opacity: 1 }} 
@@ -58,7 +69,10 @@ const AboutPage = () => {
       <section className="py-24">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8">
           <motion.div 
-            {...fadeIn} 
+            variants={fadeIn} 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
             className="bg-card border border-border p-10 rounded-3xl"
           >
             <div className="flex items-center gap-4 mb-4">
@@ -70,7 +84,10 @@ const AboutPage = () => {
             </p>
           </motion.div>
           <motion.div 
-            {...fadeIn} 
+            variants={fadeIn} 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
             className="bg-card border border-border p-10 rounded-3xl"
           >
             <div className="flex items-center gap-4 mb-4">
@@ -88,7 +105,10 @@ const AboutPage = () => {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <motion.h2 
-            {...fadeIn} 
+            variants={fadeIn} 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
             className="text-4xl font-bold text-center mb-16 text-foreground"
           >
             مسیر توسعه ما
@@ -101,7 +121,10 @@ const AboutPage = () => {
       <section className="py-24 bg-muted">
         <div className="container mx-auto px-6">
           <motion.h2 
-            {...fadeIn} 
+            variants={fadeIn} 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
             className="text-4xl font-bold text-center mb-16 text-foreground"
           >
             ارزش‌های بنیادین ما
@@ -119,12 +142,20 @@ const AboutPage = () => {
       <section id="collaboration-form" className="py-24">
         <div className="container mx-auto px-6">
           <motion.h2 
-            {...fadeIn} 
+            variants={fadeIn} 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
             className="text-4xl font-bold text-center mb-16 text-foreground"
           >
             به ما بپیوندید یا با ما در ارتباط باشید
           </motion.h2>
-          <motion.div {...fadeIn}>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings} // Apply the prop
+          >
             <ContactForms />
           </motion.div>
         </div>

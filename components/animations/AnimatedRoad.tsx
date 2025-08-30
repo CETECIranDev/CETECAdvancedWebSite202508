@@ -1,4 +1,3 @@
-// components/animations/AnimatedRoad.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -13,11 +12,13 @@ const AnimatedRoad = () => {
         className="relative w-[300%] h-[300%] bg-gray-800"
         style={{
           transform: 'rotateX(75deg) translateY(100px)',
-          backgroundImage: 'radial-gradient(ellipse at 50% 0%, hsl(var(--card)) 1%, transparent 80%)',
-          // A subtle noise texture for the road
+          // Correctly combined background images
+          backgroundImage: `
+            radial-gradient(ellipse at 50% 0%, hsl(var(--card)) 1%, transparent 80%),
+            url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZHRoPSI1MCI+DQo8ZmlsdGVyIGlkPSJub2lzZSI+DQo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+DQo8ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+DQo8L2ZpbHRlcj4NCjxyZWN0IHdpZHRoPSI1MCIgaGVpZHRoPSI1MCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4xNSIvPg0KPC9zdmc+')
+          `,
           backgroundRepeat: 'repeat',
-          backgroundSize: '100px 100px',
-          backgroundImage: `url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+DQo8ZmlsdGVyIGlkPSJub2lzZSI+DQo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+DQo8ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+DQo8L2ZpbHRlcj4NCjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4xNSIvPg0KPC9zdmc+')`,
+          backgroundSize: 'auto, 100px 100px', // Apply sizes to corresponding images
         }}
       >
         {/* Starfield/Dust Particles */}

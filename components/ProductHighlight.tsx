@@ -1,8 +1,6 @@
-// components/ProductHighlight.tsx
-import React from 'react';
-import styled from 'styled-components';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+// Import the 'Variants' type from framer-motion
+import { motion, useInView, useScroll, useTransform, Variants } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,94 +9,34 @@ interface ProductHighlightProps {
   description: string;
   image: string;
   link: string;
-  reverse?: boolean; // To alternate image/text position
+  reverse?: boolean;
   delay?: number;
 }
 
-const HighlightContainer = styled(motion.div)<{ reverse?: boolean }>`
-  display: flex;
-  flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
-  align-items: center;
-  gap: 4rem;
-  margin-bottom: 8rem;
-  text-align: ${({ reverse }) => (reverse ? 'right' : 'left')};
+// Explicitly type the variants object with the 'Variants' type
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: delay + 0.3,
+    },
+  }),
+};
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 992px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-    margin-bottom: 5rem;
-  }
-`;
-
-const ImageWrapper = styled(motion.div)`
-  flex: 1;
-  min-width: 400px;
-  max-width: 550px;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-
-  img {
-    border-radius: 20px;
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  @media (max-width: 992px) {
-    min-width: unset;
-    max-width: 100%;
-  }
-`;
-
-const ContentWrapper = styled(motion.div)`
-  flex: 1;
-  padding: 1.5rem 0;
-
-  @media (max-width: 992px) {
-    padding: 0;
-  }
-`;
-
-const ProductTitle = styled(motion.h3)`
-  font-size: 2.5rem;
-  color: ${({ theme }) => theme.colors.primary};
-  margin-bottom: 1rem;
-  font-weight: 700;
-`;
-
-const ProductDescription = styled(motion.p)`
-  font-size: 1.15rem;
-  color: ${({ theme }) => theme.colors.text};
-  line-height: 1.8;
-  margin-bottom: 2rem;
-`;
-
-const ViewProductButton = styled(motion.a)`
-  display: inline-block;
-  background: ${({ theme }) =>
-    `linear-gradient(90deg, ${theme.colors.primary} 0%, ${theme.colors.secondary} 100%)`};
-  color: white;
-  padding: 0.9rem 2rem;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    filter: brightness(1.1);
-  }
-`;
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      // Use a valid cubic-bezier array instead of a generic string
+      ease: [0.22, 1, 0.36, 1], // This is an easeOutExpo curve
+    },
+  },
+};
 
 export const ProductHighlight: React.FC<ProductHighlightProps> = ({
   title,
@@ -111,49 +49,59 @@ export const ProductHighlight: React.FC<ProductHighlightProps> = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.4 });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: delay + 0.3,
-      },
-    },
-  };
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+  const y = useTransform(scrollYProgress, [0, 1], [-50, 50]); // Reduced parallax effect
 
   return (
-    <HighlightContainer
+    <motion.div
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      reverse={reverse}
+      custom={delay} // Pass delay to variants
+      className={`flex items-center gap-6 md:gap-12 lg:gap-16 mb-24 md:mb-32 ${
+        reverse ? 'flex-col md:flex-row-reverse' : 'flex-col md:flex-row'
+      }`}
     >
-      <ImageWrapper
-        variants={itemVariants}
-        whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-      >
-        <Image src={image} alt={title} width={600} height={400} objectFit="cover" />
-      </ImageWrapper>
-      <ContentWrapper variants={containerVariants}>
-        <ProductTitle variants={itemVariants}>{title}</ProductTitle>
-        <ProductDescription variants={itemVariants}>{description}</ProductDescription>
-        <Link href={link} passHref>
-          <ViewProductButton
-            variants={itemVariants}
+      {/* Image Column */}
+      <motion.div variants={itemVariants} className="w-full md:w-1/2">
+        <div className="rounded-2xl overflow-hidden shadow-2xl border border-border">
+          <motion.div
+            className="relative w-full aspect-[4/3]"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          >
+            <motion.div style={{ y }} className="w-full h-full">
+              <Image src={image} alt={title} layout="fill" objectFit="cover" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Content Column */}
+      <motion.div
+        variants={containerVariants}
+        className={`w-full md:w-1/2 text-center ${reverse ? 'md:text-right' : 'md:text-left'}`}
+      >
+        <motion.h3 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-primary mb-4">
+          {title}
+        </motion.h3>
+        <motion.p variants={itemVariants} className="text-lg text-muted-foreground mb-8">
+          {description}
+        </motion.p>
+        <motion.div variants={itemVariants}>
+          <Link
+            href={link}
+            className="inline-block bg-primary text-primary-foreground font-bold px-8 py-3 rounded-full shadow-lg transition-transform duration-300 hover:scale-105"
           >
             {'مشاهده محصول →'}
-          </ViewProductButton>
-        </Link>
-      </ContentWrapper>
-    </HighlightContainer>
+          </Link>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };

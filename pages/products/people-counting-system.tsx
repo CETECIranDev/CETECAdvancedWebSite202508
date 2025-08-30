@@ -1,21 +1,31 @@
 import React from 'react';
-import { GetStaticProps } from 'next/get-static-props';
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { motion } from 'framer-motion';
+// Import 'Variants' and 'ViewportOptions' for correct typing
+import { motion, Variants, ViewportOptions } from 'framer-motion';
 import { Users, BarChartBig, Cpu, Lock, ShoppingCart, Plane, Calendar } from 'lucide-react';
 import LiveTrafficChart from '../../components/charts/LiveTrafficChart';
 import Link from 'next/link';
 import StatCounter from '../../components/StatCounter';
+import Image from 'next/image'; // Import Next.js Image component
 
-// Animation variants
-const fadeIn = {
+// 1. Define the viewport options with the correct type
+const viewportSettings: ViewportOptions = { once: true, amount: 0.3 };
+
+// 2. Define animation variants with the correct type and a valid 'ease' value
+const fadeIn: Variants = {
   initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.7, ease: 'easeOut' },
+  whileInView: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.22, 1, 0.36, 1] // Use a valid cubic-bezier for easeOutExpo
+    } 
+  },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   whileInView: {
     transition: {
       staggerChildren: 0.1,
@@ -23,7 +33,7 @@ const staggerContainer = {
   },
 };
 
-// Reusable components for this page with corrected color classes
+// Reusable components with correct animation props
 const StatCard: React.FC<{ icon: React.ReactNode; label: string; value: string | number; unit: string }> = ({ icon, label, value, unit }) => (
   <motion.div variants={fadeIn} className="bg-card/50 backdrop-blur-lg border border-border p-6 rounded-2xl text-center">
     <div className="text-secondary mx-auto w-fit mb-3">{icon}</div>
@@ -54,7 +64,6 @@ const UseCaseCard: React.FC<{ icon: React.ReactNode; title: string; description:
     </motion.div>
 );
 
-// Main Page Component
 const PeopleCountingPage = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -64,7 +73,6 @@ const PeopleCountingPage = () => {
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-screen -z-10">
           <source src="/videos/people-flow.mp4" type="video/mp4" />
         </video>
-        
         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1 }}>
           <div className="inline-block bg-secondary/20 border border-secondary text-secondary rounded-full px-4 py-1 mb-6 text-sm font-medium">
             دقت بی‌نظیر، بینش عمیق
@@ -84,20 +92,36 @@ const PeopleCountingPage = () => {
       {/* Live Dashboard Section */}
       <section id="dashboard" className="py-24 bg-background text-foreground">
         <div className="container mx-auto px-6">
-          <motion.div {...fadeIn}>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+          >
             <h2 className="text-4xl font-bold text-center mb-4">داشبورد تحلیل آنی</h2>
             <p className="text-lg max-w-2xl mx-auto text-center text-muted-foreground mb-12">
               داده‌های فضای خود را به صورت زنده مشاهده و تحلیل کنید.
             </p>
           </motion.div>
           <div className="bg-card border border-border rounded-3xl p-4 md:p-8 shadow-2xl">
-            <motion.div {...staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <motion.div 
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportSettings}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+            >
               <StatCard icon={<Users size={32} />} label="تعداد افراد حاضر" value={137} unit="نفر" />
               <StatCard icon={<BarChartBig size={32} />} label="اوج ترافیک امروز" value="15:30" unit="ساعت" />
               <StatCard icon={<Calendar size={32} />} label="پرترددترین روز" value="پنجشنبه" unit="هفته" />
               <StatCard icon={<Cpu size={32} />} label="دقت شمارش" value={98.7} unit="%" />
             </motion.div>
-            <motion.div {...fadeIn}>
+            <motion.div 
+              variants={fadeIn}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportSettings}
+            >
               <LiveTrafficChart />
             </motion.div>
           </div>
@@ -107,7 +131,12 @@ const PeopleCountingPage = () => {
       {/* Features Section */}
       <section className="py-24 bg-muted text-foreground">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <motion.div {...staggerContainer}>
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+          >
             <h2 className="text-4xl font-bold mb-8">طراحی شده برای عملکرد و امنیت</h2>
             <div className="space-y-8">
               <Feature 
@@ -127,9 +156,22 @@ const PeopleCountingPage = () => {
               />
             </div>
           </motion.div>
-          <motion.div {...fadeIn} className="relative h-96">
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="relative h-96"
+          >
             <div className="w-full h-full bg-card rounded-2xl flex items-center justify-center p-8 border border-border">
-              <img src="/images/ai-processing.svg" alt="AI Processing" className="w-2/3 animate-subtle-bob" />
+              {/* Using next/image to fix the warning */}
+              <Image 
+                src="/images/ai-processing.svg" 
+                alt="AI Processing" 
+                width={400} 
+                height={300} 
+                className="w-2/3 h-auto animate-subtle-bob" 
+              />
             </div>
           </motion.div>
         </div>
@@ -138,19 +180,38 @@ const PeopleCountingPage = () => {
       {/* Use Cases Section */}
       <section className="py-24 bg-background text-foreground">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12">کاربردها در صنایع مختلف</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.h2 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="text-4xl font-bold text-center mb-12"
+          >
+            کاربردها در صنایع مختلف
+          </motion.h2>
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             <UseCaseCard icon={<ShoppingCart size={40} />} title="مراکز خرید و خرده‌فروشی" description="تحلیل رفتار مشتری، بهینه‌سازی چیدمان و مدیریت صف‌ها." />
             <UseCaseCard icon={<Plane size={40} />} title="فرودگاه‌ها و ترمینال‌ها" description="مدیریت جریان مسافران، تخصیص منابع و افزایش امنیت." />
             <UseCaseCard icon={<Calendar size={40} />} title="رویدادها و نمایشگاه‌ها" description="کنترل ظرفیت، مدیریت ایمنی و ارزیابی موفقیت رویداد." />
-          </div>
+          </motion.div>
         </div>
       </section>
       
       {/* CTA Section */}
       <section className="py-24 bg-muted">
         <div className="container mx-auto px-6 text-center">
-          <motion.div {...fadeIn}>
+          <motion.div 
+            variants={fadeIn}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportSettings}
+          >
             <h2 className="text-4xl font-bold mb-4">کسب و کار خود را هوشمند کنید</h2>
             <p className="text-lg max-w-2xl mx-auto text-muted-foreground mb-8">
               برای دریافت مشاوره تخصصی و مشاهده دموی زنده سامانه، با ما تماس بگیرید.
