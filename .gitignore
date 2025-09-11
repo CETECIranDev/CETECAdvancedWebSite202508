@@ -50,7 +50,6 @@ yarn-error.log*
 # ===============================================
 
 # Large media files that should not be in Git
-*.mp4
 *.mov
 *.webm
 *.avi
