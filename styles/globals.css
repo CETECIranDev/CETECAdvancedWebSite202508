@@ -1,0 +1,132 @@
+/* styles/globals.css */
+
+/*
+ * ===================================================================
+ *  1. Font Definitions (IRANYekanX)
+ * ===================================================================
+ *  Define the custom font family here. Make sure the font files
+ *  are located in your `public/fonts/` directory.
+ */
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Regular.woff2') format('woff2');
+  font-weight: 300; /* Light */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Regular.woff2') format('woff2');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Bold.woff2') format('woff2');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('/fonts/IRANYekanX-Bold.woff2') format('woff2');
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/*
+ * ===================================================================
+ *  2. Tailwind CSS Directives
+ * ===================================================================
+ *  These are required for Tailwind to work.
+ */
+/* styles/globals.css */
+
+/* ... @font-face definitions for IRANYekanX ... */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 
+     * ==========================================================
+     *  NEW & IMPROVED LIGHT THEME PALETTE (Clean & Modern)
+     * ==========================================================
+     */
+    --floating-shape-opacity: 0.05; /* شفافیت در حالت لایت */
+ 
+    --background: 240 5% 98%;    /* #F9FAFB - Soft, off-white background (Gray 50) */
+    --foreground: 240 10% 3.9%;   /* #0A0A0A - Almost black for high contrast text */
+
+    /* Cards are pure white to stand out, with subtle borders */
+    --card: 0 0% 100%;        /* #FFFFFF - Pure white */
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* A deep, trustworthy blue for primary actions */
+    --primary: 221 83% 53%;   /* #3B82F6 - Deep, confident blue */
+    --primary-foreground: 0 0% 100%; /* White text on the blue */
+
+    /* A vibrant teal/green for secondary accents */
+    --secondary: 160 70% 40%; /* #14A38B - Vibrant Teal */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted colors for less important text and subtle backgrounds */
+    --muted: 240 5% 94%;      /* #F0F0F2 - A slightly darker gray for muted backgrounds */
+    --muted-foreground: 240 4% 46%;   /* #6E7075 - Soft gray for muted text */
+    
+    --accent: 240 5% 94%;
+    --accent-foreground: 240 6% 10%;
+
+    /* Borders are very light and subtle */
+    --border: 240 6% 90%;     /* #E4E4E7 - A very light gray border */
+    --input: 240 6% 90%;
+    --ring: 221 83% 53%;
+  }
+
+  .dark {
+    /* ... (Your existing modern dark theme palette) ... */
+    --floating-shape-opacity: 0.1; /* شفافیت در حالت دارک (کمی بیشتر) */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 223 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 310 80% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 223 47% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 223 47% 18%;
+    --accent-foreground: 210 40% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'IRANYekanX', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  *, ::before, ::after {
+    @apply transition-colors duration-300;
+  }
+}

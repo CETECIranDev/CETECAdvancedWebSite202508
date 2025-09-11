@@ -1,0 +1,76 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production
+/build
+
+# Vercel deployment metadata
+.vercel
+
+# Static exports
+/export
+
+# Misc
+.DS_Store
+*.pem
+
+# Local environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE configuration files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===============================================
+# CUSTOM RULES FOR OUR PROJECT (IMPORTANT)
+# ===============================================
+
+# Large media files that should not be in Git
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+
+# Executables and installers
+*.exe
+*.dmg
+*.iso
+*.msi
+
+# Download files
+*.crdownload
+*.download
+
+# Large image formats (optional but recommended)
+# *.psd
+# *.ai
+
+# Archives
+*.zip
+*.rar
+*.tar.gz
