@@ -1,31 +1,41 @@
-// components/dashboard/MiniBarChart.tsx
-import React from 'react';
-import { BarChart, Bar, XAxis, ResponsiveContainer, Tooltip } from 'recharts';
+// components/dashboard/MiniAreaChart.tsx (Corrected Version)
+import React, { useState, useEffect } from 'react';
+import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'ورودی A', pv: 24 },
-  { name: 'ورودی B', pv: 13 },
-  { name: 'لابی', pv: 48 },
-  { name: 'فروشگاه', pv: 39 },
-];
+// Function to generate random data
+const generateData = () => Array.from({ length: 10 }, () => ({ v: Math.random() * 100 }));
 
-const MiniBarChart = () => {
+// This component no longer accepts a 'color' prop
+const MiniAreaChart: React.FC = () => {
+  const [data, setData] = useState(generateData());
+
+  useEffect(() => {
+    const interval = setInterval(() => setData(generateData()), 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // We define the color using a CSS variable directly
+  const chartColor = "hsl(var(--primary))";
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-        <XAxis dataKey="name" fontSize={10} stroke="hsl(var(--muted-foreground))" />
-        <Tooltip
-          cursor={{ fill: 'hsla(var(--primary), 0.1)' }}
-          contentStyle={{
-            backgroundColor: 'hsla(var(--card), 0.8)',
-            borderColor: 'hsl(var(--border))',
-            borderRadius: '0.5rem',
-          }}
+      <AreaChart data={data} margin={{ top: 5, right: 0, left: 0, bottom: 0 }}>
+        <defs>
+          <linearGradient id="miniChartGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={chartColor} stopOpacity={0.4} />
+            <stop offset="95%" stopColor={chartColor} stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <Area 
+          type="monotone" 
+          dataKey="v" 
+          stroke={chartColor} 
+          strokeWidth={2} 
+          fill="url(#miniChartGradient)" 
         />
-        <Bar dataKey="pv" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-      </BarChart>
+      </AreaChart>
     </ResponsiveContainer>
   );
 };
 
-export default MiniBarChart;
+export default MiniAreaChart;

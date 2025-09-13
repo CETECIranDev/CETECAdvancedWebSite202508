@@ -53,7 +53,7 @@ const DashboardShowcase = () => {
           {/* People Counting (Line Chart) */}
           <div className="col-span-3 row-span-2 bg-muted/50 rounded-lg p-3 flex flex-col">
             <h4 className="flex items-center gap-2 text-xs font-semibold text-muted-foreground mb-1"><Users size={12}/><span>ترافیک افراد (لحظه‌ای)</span></h4>
-            <div className="flex-grow"><MiniAreaChart color="hsl(var(--primary))" /></div>
+            <div className="flex-grow"><MiniAreaChart /></div>
           </div>
 
           {/* Traffic Counter (Donut Chart) */}
