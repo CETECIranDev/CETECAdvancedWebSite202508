@@ -10,7 +10,7 @@ import * as Icons from 'lucide-react';
 import AIPlayground from '../components/AIPlayground'; // <-- کامپوننت جدید را import کنید
 import HeroAurora from '../components/HeroAurora';
 import DashboardShowcase from '@/components/DashboardShowcase';
-import NeuralNetworkCanvas from '@/components/NeuralNetworkCanvas';
+
 
 // 1. Define the type for an icon name from lucide-react
 type IconName = keyof typeof Icons;
@@ -87,18 +87,10 @@ const Home = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      {/* 
-        ==========================================================
-         NEW HERO SECTION WITH NEURAL NETWORK CANVAS
-        ==========================================================
-      */}
+      {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-        
-        {/* The canvas handles its own background */}
-        <NeuralNetworkCanvas />
-
-        {/* This gradient makes the text more readable at the bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background -z-10"></div>
+        <div className="absolute inset-0 bg-hero-grid-light dark:bg-hero-grid-dark opacity-40"></div>         
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
         <HeroAurora />
 
         <motion.div
@@ -107,39 +99,31 @@ const Home = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="z-10"
         >
-          <div 
-            className="inline-block bg-card/50 backdrop-blur-sm border border-border rounded-full px-4 py-2 mb-6 text-sm"
-          >
+
+          <div className="inline-block bg-card border border-border rounded-full px-4 py-2 mb-6 text-sm">
             <span className="text-primary font-semibold">نوآوری در هسته</span> | آینده را امروز بسازید
           </div>
-          <h1 
-            className="text-5xl md:text-7xl font-extrabold mb-6" 
-            style={{ textShadow: '0 2px 15px hsl(var(--background))' }} // Shadow with background color for glow effect
-          >
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
             مهندسی آینده هوشمند
           </h1>
-          <p 
-            className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-10"
-            style={{ textShadow: '0 1px 8px hsl(var(--background))' }}
-          >
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-10">
             ما راهکارهای پیشرفته هوش مصنوعی، اینترنت اشیا و پهپادی را برای حل پیچیده‌ترین چالش‌های جهان ارائه می‌دهیم.
           </p>
           <div className="flex justify-center gap-4">
             <Link 
               href="/products" 
-              className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg backdrop-blur-sm"
+              className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg"
             >
               اکتشاف محصولات <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
               href="/contact" 
-              className="bg-card/50 backdrop-blur-sm hover:bg-muted font-bold px-8 py-4 rounded-full transition-colors shadow-lg border border-border"
+              className="bg-card hover:bg-muted font-bold px-8 py-4 rounded-full transition-colors shadow-lg border border-border"
             >
               تماس با ما
             </Link>
           </div>
         </motion.div>
-        
         <motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
@@ -148,7 +132,6 @@ const Home = () => {
           <ChevronDown size={32} className="text-muted-foreground" />
         </motion.div>
       </section>
-
         {/* Dashboard Showcase Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6 text-center">
