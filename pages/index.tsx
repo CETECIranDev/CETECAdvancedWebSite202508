@@ -68,6 +68,14 @@ const products: Product[] = [
     icon: "BrainCircuit",
     link: "/products" // Link to general products page for now
   }
+  ,
+  { 
+    title: "سامانه واسط مغز و رایانه ",
+    description: "با بهره گیری از یادگیری عمیق برخط و پردازش سیگنال مغزی می توان دنیا را هدایت کرد",
+    icon: "BrainCircuit",
+    link: "/products" // Link to general products page for now
+  }
+
 ];
 
 const Home = () => {
