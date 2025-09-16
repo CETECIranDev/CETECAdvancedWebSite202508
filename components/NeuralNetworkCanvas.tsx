@@ -1,5 +1,13 @@
-// components/NeuralNetworkCanvas.tsx
 import React, { useRef, useEffect } from 'react';
+
+// 1. Define a specific interface for a single node
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+}
 
 const NeuralNetworkCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -12,7 +20,8 @@ const NeuralNetworkCanvas = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let nodes: any[] = [];
+    // 2. Use the 'Node[]' type instead of 'any[]'
+    let nodes: Node[] = [];
     const nodeCount = 60;
     const maxDistance = 150;
 
@@ -45,6 +54,8 @@ const NeuralNetworkCanvas = () => {
       const isDark = document.documentElement.classList.contains('dark');
       const primaryColor = isDark ? 'hsla(217, 91%, 60%, 1)' : 'hsla(221, 83%, 53%, 1)';
       const nodeColor = isDark ? 'hsla(210, 40%, 98%, 1)' : 'hsla(240, 4%, 46%, 1)';
+      const lineColorDark = `hsla(210, 40%, 98%,`;
+      const lineColorLight = `hsla(240, 4%, 46%,`;
       
       nodes.forEach(node => {
         node.x += node.vx;
@@ -64,8 +75,8 @@ const NeuralNetworkCanvas = () => {
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(linkNode.x, linkNode.y);
-            ctx.strokeStyle = `hsla(210, 40%, 98%, ${1 - distance / maxDistance})`;
-            if(!isDark) ctx.strokeStyle = `hsla(240, 4%, 46%, ${1 - distance / maxDistance})`;
+            const opacity = 1 - distance / maxDistance;
+            ctx.strokeStyle = isDark ? `${lineColorDark} ${opacity})` : `${lineColorLight} ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
