@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, currentTheme, isMounted })
     { href: '/services', label: 'خدمات' },
     { href: '/about', label: 'درباره ما' },
     { href: '/lab', label: 'آزمایشگاه دانش' },
-    { href: '/contact', label: 'تماس با ما' },
+    { href: '/contact', label: 'تماس' },
   ];
 
   return (
