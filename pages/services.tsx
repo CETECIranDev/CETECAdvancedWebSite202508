@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
 import InteractiveServices from '../components/InteractiveServices';
+import Link from 'next/link';
 
 const ServicesPage = () => {
   return (
@@ -39,9 +40,9 @@ const ServicesPage = () => {
           <p className="text-xl max-w-2xl mx-auto text-subtle-dark mb-10">
             آماده‌اید تا ایده‌های خود را به واقعیت تبدیل کنید؟ تیم ما برای همکاری با شما آماده است.
           </p>
-          <a href="/contact" className="inline-block bg-primary-dark hover:bg-blue-500 text-white font-bold px-10 py-4 rounded-full transition-all duration-300 shadow-lg">
+          <Link href="/contact" className="inline-block bg-primary-dark hover:bg-blue-500 text-white font-bold px-10 py-4 rounded-full transition-all duration-300 shadow-lg">
             شروع گفتگو
-          </a>
+          </Link>
         </motion.div>
       </section>
     </motion.div>
