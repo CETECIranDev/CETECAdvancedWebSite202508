@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, currentTheme, isMounted })
     <>
       {/* Main Header for Desktop */}
       <motion.header
-        className={`fixed top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-6xl transition-all duration-300`}
+        className={`fixed border-[#ffffff2f] border-2 rounded-full backdrop-blur-md top-4 left-0 right-0 z-50 mx-auto w-[95%] max-w-6xl transition-all duration-300`}
         animate={{
         
         }}
@@ -63,13 +63,13 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, currentTheme, isMounted })
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center">
             {/* Products Dropdown */}
             <div className="group relative">
               <Link href="/products" className="font-semibold text-text-light dark:text-text-dark px-4 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
                 محصولات
               </Link>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute z-[999999] bg-[#ffffffb4] dark:bg-[#000000ad] top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
                 <div className="bg-card-light dark:bg-card-dark rounded-xl shadow-2xl border border-border-light dark:border-border-dark w-64 p-2">
                   {products.map(product => (
                     <Link key={product.href} href={product.href} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
