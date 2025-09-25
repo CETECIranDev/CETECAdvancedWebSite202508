@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
-import { SlidersHorizontal, Zap, Thermometer } from 'lucide-react';
+import { SlidersHorizontal, Zap, Thermometer , ChevronDown } from 'lucide-react';
 import DataLoggerConfigurator, { DataLoggerConfig } from '../../components/DataLoggerConfigurator'; // Import the component and the type
 import Image from 'next/image';
+import LiveIranMap from '../../components/LiveIranMap'; // <-- کامپوننت جدید را import کنید
 
 // --- Presets for different applications ---
 const presets: { [key: string]: DataLoggerConfig } = {
@@ -73,6 +74,41 @@ const IndustrialDataLoggersPage = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {/* Hero Section */}
+        {/*
+        ==========================================================
+         NEW HERO SECTION WITH INTERACTIVE LEAFLET MAP
+        ==========================================================
+      */}
+        <section className="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden">
+            <div className="absolute inset-0 z-10 w-full h-full">
+                <LiveIranMap />
+            </div>
+
+            {/* Gradient overlay to make text readable */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-20"></div>
+
+            <div className="relative z-30 mt-auto mb-20">
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-5xl md:text-7xl font-extrabold mb-4 text-foreground"
+                    style={{ textShadow: '0 2px 10px hsl(var(--background))' }}
+                >
+                    پوشش سراسری، داده‌های مطمئن
+                </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-xl md:text-2xl max-w-3xl mx-auto text-muted-foreground"
+                    style={{ textShadow: '0 1px 5px hsl(var(--background))' }}
+                >
+                    دیتالاگرهای صنعتی ما در سراسر کشور، در حال ثبت و ارسال داده‌های حیاتی برای صنایع پیشرو هستند.
+                </motion.p>
+            </div>
+        </section>
+
+
       <section className="relative py-24 text-center overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src="/images/industrial-background.jpg" layout="fill" objectFit="cover" alt="Industrial Background" className="opacity-10" />

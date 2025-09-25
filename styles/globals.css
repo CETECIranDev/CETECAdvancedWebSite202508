@@ -130,3 +130,158 @@
     @apply transition-colors duration-300;
   }
 }
+
+/*
+ * ===================================================================
+ *  Custom Styles for PERMANENTLY Animated Neon Border Card
+ * ===================================================================
+ */
+
+/*
+  Registering '--angle' as a CSS property allows us to animate it smoothly.
+  This is the magic behind the rotating gradient.
+*/
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* The animation that changes the --angle from 0 to 360 degrees */
+@keyframes rotate-border {
+    to {
+        --angle: 360deg;
+    }
+}
+
+.neon-border-card {
+    position: relative;
+    --angle: 0deg; /* Initialize the variable */
+}
+
+/*
+  The pseudo-element that acts as the rotating border.
+  It's slightly larger than the card to create the border effect.
+*/
+.neon-border-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px; /* Controls the border thickness */
+    z-index: 0; /* Sits behind the content card */
+    border-radius: 1.2rem; /* Should be slightly larger than the content card's radius */
+
+    /* The conical gradient that creates the "light beam" */
+    background: conic-gradient(
+            from var(--angle),
+            transparent 20%, /* Start with transparency */
+            hsl(var(--secondary)),
+            hsl(var(--primary)),
+            hsl(var(--secondary)),
+            transparent 80% /* End with transparency */
+    );
+
+    /* The animation is ALWAYS running */
+    animation: rotate-border 4s linear infinite;
+}
+
+/*
+  Optional: A soft, static glow that sits behind everything to enhance the neon effect.
+  This doesn't animate, but it makes the card pop.
+*/
+.neon-border-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 1rem;
+    background: hsl(var(--primary));
+    filter: blur(25px);
+    opacity: 0.15; /* A very subtle glow */
+}
+
+.custom-pulsing-icon .pulsing-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+}
+
+/* Optional: Style the popup to match our theme */
+.leaflet-popup-content-wrapper {
+    background: hsl(var(--card)) !important;
+    color: hsl(var(--foreground)) !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+.leaflet-popup-tip {
+    background: hsl(var(--card)) !important;
+}
+.leaflet-popup-close-button {
+    color: hsl(var(--foreground)) !important;
+}
+
+.react-flow .react-flow__node {
+    @apply bg-card/80 backdrop-blur-md border-2 border-border text-foreground font-semibold rounded-lg shadow-lg;
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.react-flow .react-flow__node.react-flow__node-input {
+    @apply border-secondary;
+}
+
+.react-flow .react-flow__node.react-flow__node-output {
+    @apply border-primary;
+}
+
+.react-flow .react-flow__edge-path {
+    stroke: hsl(var(--primary));
+}
+
+.react-flow .react-flow__node-custom {
+    @apply bg-card/50 backdrop-blur-lg border-2 border-border rounded-full shadow-lg;
+    width: 112px; /* 7rem */
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.react-flow .react-flow__edge-path {
+    stroke: hsl(var(--primary));
+    stroke-width: 2px;
+}
+
+/* Style for the animated part of the edge */
+.react-flow__edge.animated .react-flow__edge-path {
+    stroke-dasharray: 5;
+    animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+    from {
+        stroke-dashoffset: 10;
+    }
+}

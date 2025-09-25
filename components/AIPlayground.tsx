@@ -11,6 +11,7 @@ interface Detection {
   score: number;
 }
 
+
 // Now that 'React' is imported, 'JSX.Element' will be recognized.
 const labelStyles: { [key: string]: { borderColor: string; textColor: string; icon: ReactNode } } = {
   person: {

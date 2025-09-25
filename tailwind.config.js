@@ -71,6 +71,8 @@ module.exports = {
       animation: {
         'gradient-pulse': 'gradient-pulse 8s ease-in-out infinite',
         'subtle-bob': 'subtle-bob 4s ease-in-out infinite',
+        'border-spin': 'spin 6s linear infinite', // انیمیشن برای چرخش حاشیه
+
       },
 
       // 8. (Optional) Custom background images if needed
