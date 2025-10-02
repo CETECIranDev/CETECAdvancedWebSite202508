@@ -2,6 +2,7 @@
 import React from 'react'; // <--- این خط حیاتی اضافه شد
 import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
+import { useTranslation } from 'next-i18next';
 
 interface TimelineEvent {
   year: string;
@@ -9,13 +10,6 @@ interface TimelineEvent {
   description: string;
 }
 
-const events: TimelineEvent[] = [
-  { year: '۱۳۹۵', title: 'تاسیس و شروع ایده', description: 'شرکت با هدف توسعه راهکارهای نوین مبتنی بر اینترنت اشیا توسط تیمی از نخبگان دانشگاهی تاسیس شد.' },
-  { year: '۱۳۹۷', title: 'اولین محصول: دیتا لاگر صنعتی', description: 'پس از دو سال تحقیق و توسعه، اولین نسل از دیتا لاگرهای صنعتی ما با موفقیت وارد بازار شد.' },
-  { year: '۱۳۹۹', title: 'ورود به حوزه هوش مصنوعی', description: 'با گسترش تیم، تمرکز خود را بر روی ادغام هوش مصنوعی با سخت‌افزار قرار دادیم و پروژه شمارش هوشمند افراد کلید خورد.' },
-  { year: '۱۴۰۱', title: 'معرفی پهپاد هوشمند VTOL', description: 'با دستیابی به فناوری‌های پیشرفته، از اولین پهپاد عمود پرواز هوشمند خود رونمایی کردیم.' },
-  { year: 'آینده', title: 'پیش به سوی آینده‌ای پایدار', description: 'چشم‌انداز ما تبدیل شدن به رهبر منطقه‌ای در زمینه فناوری‌های سبز و مدیریت هوشمند انرژی است.' },
-];
 
 const TimelineItem: React.FC<{ event: TimelineEvent; index: number }> = ({ event, index }) => {
   const ref = useRef(null);
@@ -56,7 +50,16 @@ const TimelineItem: React.FC<{ event: TimelineEvent; index: number }> = ({ event
 };
 
 const Timeline = () => {
-  return (
+    const { t } = useTranslation('about'); // 2. Use the hook
+
+    const events = [
+        { year: t('timeline.event1.year'), title: t('timeline.event1.title'), description: t('timeline.event1.description') },
+        { year: t('timeline.event2.year'), title: t('timeline.event2.title'), description: t('timeline.event2.description') },
+        { year: t('timeline.event3.year'), title: t('timeline.event3.title'), description: t('timeline.event3.description') },
+        { year: t('timeline.event4.year'), title: t('timeline.event4.title'), description: t('timeline.event4.description') },
+        { year: t('timeline.event5.year'), title: t('timeline.event5.title'), description: t('timeline.event5.description') },
+    ];
+    return (
     <div className="relative wrap overflow-hidden p-0 md:p-10 h-full">
       <div className="absolute border-2 border-opacity-20 border-border-dark h-full border hidden md:block" style={{ left: '50%' }}></div>
       {events.map((event, index) => (

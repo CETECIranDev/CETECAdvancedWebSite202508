@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "title": "Let's Talk",
+    "subtitle": "We are always ready to hear ideas, answer questions, and start new collaborations."
+  },
+  "info": {
+    "address": {
+      "title": "Head Office Address",
+      "content": "Sharif University of Technology, Azadi St, Tehran, Iran",
+      "action": "Show on Map"
+    },
+    "email": {
+      "title": "Email",
+      "content": "info@cetecelectronic.com",
+      "action": "Copy Email"
+    },
+    "phone": {
+      "title": "Phone Number",
+      "content": "+98-21-12345678",
+      "action": "Call Us"
+    }
+  },
+  "form_section": {
+    "title": "Leave Us a Message"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "badge": "Innovation at Core | Build the Future Today",
+    "title": "Engineering the Flow of Data",
+    "subtitle": "We transform raw, real-world data into smart, actionable insights for your business.",
+    "primary_cta": "Explore Products",
+    "secondary_cta": "Contact Us"
+  },
+  "partners_section": {
+    "title": "Our Partner Ecosystem",
+    "subtitle": "We collaborate with leading organizations and industries to create powerful, integrated solutions."
+  },
+  "products_section": {
+    "title": "Transformative Technologies",
+    "subtitle": "From smart crowd counting to IoT energy management, our products are designed to boost efficiency and sustainability."
+  },
+  "products": {
+    "people_counting": {
+      "title": "Smart People Counting System",
+      "description": "Precise, real-time analysis of crowd flow using AI."
+    },
+    "traffic_counter": {
+      "title": "Road Traffic Counter",
+      "description": "Accurate traffic data with inductive loop technology."
+    },
+    "vtol_drone": {
+      "title": "Smart VTOL Drone",
+      "description": "Unmatched precision in aerial surveillance and mapping."
+    },
+    "datalogger": {
+      "title": "Industrial Dataloggers",
+      "description": "Reliable and accurate collection of critical mission data."
+    },
+    "energy_management": {
+      "title": "Comprehensive Energy & IoT Management",
+      "description": "Optimize energy consumption and smart device control."
+    }
+  },
+  "ai_playground": {
+    "title": "See Our Technology in Action",
+    "subtitle": "This is a live, simulated demo of our image processing power. Play with the filters and see how our system classifies objects in real-time."
+  },
+  "dashboard_showcase": {
+    "title": "Unified Smart Dashboard",
+    "subtitle": "All your hardware data in one powerful, elegant software platform. Move your mouse to rotate the dashboard in 3D space."
+  }
+}

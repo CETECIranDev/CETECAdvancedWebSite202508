@@ -9,32 +9,32 @@
  */
 
 @font-face {
-  font-family: 'IRANYekanX';
-  src: url('/fonts/IRANYekanX-Regular.woff2') format('woff2');
+  font-family: 'Dana';
+  src: url('/fonts/DanaLight.woff') format('woff');
   font-weight: 300; /* Light */
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'IRANYekanX';
-  src: url('/fonts/IRANYekanX-Regular.woff2') format('woff2');
+  font-family: 'Dana';
+  src: url('/fonts/DanaRegular.woff') format('woff');
   font-weight: 400; /* Regular */
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'IRANYekanX';
-  src: url('/fonts/IRANYekanX-Bold.woff2') format('woff2');
+  font-family: 'Dana';
+  src: url('/fonts/DanaBold.woff') format('woff');
   font-weight: 700; /* Bold */
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'IRANYekanX';
-  src: url('/fonts/IRANYekanX-Bold.woff2') format('woff2');
+  font-family: 'Dana';
+  src: url('/fonts/DanaExtraBold.woff') format('woff');
   font-weight: 800; /* ExtraBold */
   font-style: normal;
   font-display: swap;
@@ -121,7 +121,7 @@
 @layer base {
   body {
     @apply bg-background text-foreground;
-    font-family: 'IRANYekanX', sans-serif;
+    font-family: 'Dana', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

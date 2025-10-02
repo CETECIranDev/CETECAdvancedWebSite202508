@@ -1,0 +1,116 @@
+{
+  "hero": {
+    "badge": "Unmatched Accuracy, Deep Insights",
+    "title": "Smart People Counting System",
+    "subtitle": "Optimize your space with precise data and powerful AI-driven analytics.",
+    "cta": "View Live Dashboard"
+  },
+  "dashboard_section": {
+    "title": "Real-Time Analytics Dashboard",
+    "subtitle": "Monitor and analyze your space's data live as it happens."
+  },
+  "stats": {
+    "present": "People Present",
+    "peak_traffic": "Today's Peak Traffic",
+    "busiest_day": "Busiest Day",
+    "accuracy": "Counting Accuracy",
+    "person_unit": "people",
+    "hour_unit": "o'clock",
+    "day_unit": "of the week",
+    "percent_unit": "%"
+  },
+  "features_section": {
+    "title": "Designed for Performance and Security"
+  },
+  "features": {
+    "ai": {
+      "title": "Advanced Artificial Intelligence",
+      "description": "Utilizing the latest deep learning models for accurate detection and counting in various lighting and density conditions."
+    },
+    "privacy": {
+      "title": "Complete Privacy Protection",
+      "description": "The system processes data in real-time and does not store any images or identifying information of individuals."
+    },
+    "reporting": {
+      "title": "Comprehensive Reporting",
+      "description": "Access to analytical reports, heatmaps, and behavioral patterns for intelligent decision-making."
+    }
+  },
+  "use_cases_section": {
+    "title": "Applications Across Industries"
+  },
+  "use_cases": {
+    "retail": {
+      "title": "Shopping Malls & Retail",
+      "description": "Analyze customer behavior, optimize layouts, and manage queues."
+    },
+    "transport": {
+      "title": "Airports & Terminals",
+      "description": "Manage passenger flow, allocate resources, and enhance security."
+    },
+    "events": {
+      "title": "Events & Exhibitions",
+      "description": "Control capacity, manage safety, and evaluate event success."
+    }
+  },
+  "pricing_section": {
+    "title": "Flexible Plans for Your Needs",
+    "subtitle": "From a single device to a full enterprise solution, we have the right plan for you.",
+    "toggle_monthly": "Monthly",
+    "toggle_yearly": "Yearly (20% Off)"
+  },
+  "plans": {
+    "base": {
+      "name": "Base | Hardware",
+      "price_monthly": "Contact Us",
+      "desc_monthly": "Per device",
+      "price_yearly": "Contact Us",
+      "desc_yearly": "Per device (annual contract)",
+      "features": [
+        "High-accuracy counting device",
+        "Entry and exit counting capability",
+        "Ethernet connectivity",
+        "One-year hardware warranty"
+      ],
+      "cta": "Get a Quote"
+    },
+    "professional": {
+      "name": "Professional | Software",
+      "badge": "Most Popular",
+      "price_monthly": "Contact Us",
+      "desc_monthly": "Monthly / Per license",
+      "price_yearly": "Contact Us",
+      "desc_yearly": "Annually / Per license",
+      "features": [
+        "All features from the Base plan",
+        "Web-based software license",
+        "Analytics dashboard and reporting",
+        "Gender estimation feature",
+        "Age range estimation feature",
+        "Standard technical support"
+      ],
+      "cta": "Get Started"
+    },
+    "enterprise": {
+      "name": "Enterprise | Full Solution",
+      "price_monthly": "Custom",
+      "desc_monthly": "For large-scale projects",
+      "price_yearly": "Custom",
+      "desc_yearly": "For large-scale projects",
+      "features": [
+        "All features from the Professional plan",
+        "Advanced Path Tracking analysis",
+        "Heatmaps generation",
+        "API access for integration",
+        "Dedicated premium support",
+        "On-site installation and setup"
+      ],
+      "cta": "Consult an Expert"
+    }
+  },
+  "final_cta": {
+    "title": "Make Your Business Smarter",
+    "subtitle": "Contact us for a specialized consultation and a live demo of the system.",
+    "cta": "Request a Demo"
+  }
+}

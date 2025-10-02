@@ -112,17 +112,17 @@ const CollaborationForm = () => {
 
 // --- Main Tabs Component ---
 const ContactForms = () => {
-  const [activeTab, setActiveTab] = useState<'contact' | 'collaboration'>('contact');
+  const [activeTab, setActiveTab] = useState<'contact.json' | 'collaboration'>('contact.json');
 
   return (
     <div id="collaboration-form" className="w-full max-w-3xl mx-auto">
       <div className="flex border-b border-border mb-8">
         <button 
-          onClick={() => setActiveTab('contact')}
-          className={`px-6 py-3 text-lg font-semibold relative transition-colors ${activeTab === 'contact' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
+          onClick={() => setActiveTab('contact.json')}
+          className={`px-6 py-3 text-lg font-semibold relative transition-colors ${activeTab === 'contact.json' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
         >
           ارتباط با ما
-          {activeTab === 'contact' && <motion.div layoutId="underline" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-primary" />}
+          {activeTab === 'contact.json' && <motion.div layoutId="underline" className="absolute bottom-[-1px] left-0 right-0 h-1 bg-primary" />}
         </button>
         <button 
           onClick={() => setActiveTab('collaboration')}
@@ -135,7 +135,7 @@ const ContactForms = () => {
       
       <AnimatePresence mode="wait">
         <div key={activeTab}>
-          {activeTab === 'contact' ? <ContactForm /> : <CollaborationForm />}
+          {activeTab === 'contact.json' ? <ContactForm /> : <CollaborationForm />}
         </div>
       </AnimatePresence>
     </div>

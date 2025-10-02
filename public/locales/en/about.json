@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "We Engineer the Future",
+    "subtitle": "Our story is one of passion for innovation and a commitment to building a smarter, more sustainable world."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "text": "To develop and deliver integrated, intelligent solutions based on IoT and AI to increase efficiency, safety, and sustainability in key national industries."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "text": "To become the regional leader in smart and green technologies, and to make a positive, lasting impact on society and the environment."
+  },
+  "timeline_section": {
+    "title": "Our Development Journey"
+  },
+  "timeline": {
+    "event1": { "year": "2015", "title": "تاسیس و شروع ایده", "description": "شرکت با هدف توسعه راهکارهای نوین مبتنی بر اینترنت اشیا توسط تیمی از نخبگان دانشگاهی تاسیس شد." },
+    "event2": { "year": "2017", "title": "اولین محصول: دیتا لاگر صنعتی", "description": "پس از دو سال تحقیق و توسعه، اولین نسل از دیتا لاگرهای صنعتی ما با موفقیت وارد بازار شد." },
+    "event3": { "year": "2019", "title": "ورود به حوزه هوش مصنوعی", "description": "با گسترش تیم، تمرکز خود را بر روی ادغام هوش مصنوعی با سخت‌افزار قرار دادیم و پروژه شمارش هوشمند افراد کلید خورد." },
+    "event4": { "year": "2021", "title": "معرفی پهپاد هوشمند VTOL", "description": "با دستیابی به فناوری‌های پیشرفته، از اولین پهپاد عمود پرواز هوشمند خود رونمایی کردیم." },
+    "event5": { "year": "future", "title": "پیش به سوی آینده‌ای پایدار", "description": "چشم‌انداز ما تبدیل شدن به رهبر منطقه‌ای در زمینه فناوری‌های سبز و مدیریت هوشمند انرژی است." }
+  },
+  "values_section": {
+    "title": "Our Core Values"
+  },
+  "values": {
+    "innovation": {
+      "title": "Endless Innovation",
+      "description": "We are always seeking new and better ways to solve problems."
+    },
+    "team": {
+      "title": "Expert Team",
+      "description": "Our strength lies in the expertise, collaboration, and shared passion of our team."
+    },
+    "commitment": {
+      "title": "Customer Commitment",
+      "description": "Our customers' success is our success. We are their trusted partner."
+    },
+    "integrity": {
+      "title": "Integrity and Transparency",
+      "description": "Honesty and transparency in all our interactions are our inviolable principles."
+    }
+  },
+  "forms_section": {
+    "title": "Join Us or Get in Touch"
+  }
+}

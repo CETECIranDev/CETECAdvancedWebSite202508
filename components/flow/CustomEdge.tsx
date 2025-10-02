@@ -1,5 +1,29 @@
 import React from 'react';
-import { EdgeProps, getBezierPath } from 'reactflow';
+import { EdgeProps, Position } from 'reactflow';
+
+// A custom path calculation function for more dramatic curves
+function getCustomCurvedPath({
+                                 sourceX,
+                                 sourceY,
+                                 targetX,
+                                 targetY,
+                             }: {
+    sourceX: number;
+    sourceY: number;
+    targetX: number;
+    targetY: number;
+}): string {
+    const dx = targetX - sourceX;
+    const dy = targetY - sourceY;
+    const curveIntensity = 0.3; // Increase this value for more curve
+
+    const cx1 = sourceX + dx * curveIntensity;
+    const cy1 = sourceY + dy * curveIntensity - Math.abs(dx) * curveIntensity;
+    const cx2 = targetX - dx * curveIntensity;
+    const cy2 = targetY - dy * curveIntensity + Math.abs(dx) * curveIntensity;
+
+    return `M ${sourceX},${sourceY} C ${cx1},${cy1} ${cx2},${cy2} ${targetX},${targetY}`;
+}
 
 const CustomEdge: React.FC<EdgeProps> = ({
                                              id,
@@ -7,26 +31,21 @@ const CustomEdge: React.FC<EdgeProps> = ({
                                              sourceY,
                                              targetX,
                                              targetY,
-                                             sourcePosition,
-                                             targetPosition,
                                              style = {},
                                          }) => {
-    const [edgePath] = getBezierPath({
+    const edgePath = getCustomCurvedPath({
         sourceX,
         sourceY,
-        sourcePosition,
         targetX,
         targetY,
-        targetPosition,
     });
 
     return (
         <path
             id={id}
-            style={{ ...style, strokeWidth: 2 }}
+            style={style}
             className="react-flow__edge-path"
             d={edgePath}
-            markerEnd="url(#arrow)" // Optional: add an arrowhead
         />
     );
 };

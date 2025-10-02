@@ -1,27 +1,11 @@
 {
-  "greeting": "سلام، به وبسایت شرکت ما خوش آمدید!",
-  "home": "خانه",
-  "about": "درباره ما",
-  "products": "محصولات",
-  "contact": "تماس با ما",
-  "themeToggle": "تغییر تم",
-  "heroTitle": "پیشرو در فناوری‌های هوشمند برای آینده‌ای روشن",
-  "heroSubtitle": "با راهکارهای نوآورانه ما، دنیای خود را متحول کنید. هوش مصنوعی، اینترنت اشیا و سیستم‌های پیشرفته.",
-  "viewProducts": "مشاهده محصولات",
-  "ourProducts": "محصولات ما",
-  "readyToInnovate": "آماده‌اید تا با ما نوآوری کنید؟",
-  "contactUsDescription": "برای مشاوره رایگان و کسب اطلاعات بیشتر درباره راهکارهای ما، همین امروز با ما تماس بگیرید.",
-  "contactUs": "تماس با ما",
-  "companyName": "شرکت قطب دانش و فناوری های مدرن پارس",
-  "allRightsReserved": "تمامی حقوق محفوظ است." , 
-  "heroTitle": "Pioneering Smart Technologies for a Brighter Future",
-  "heroSubtitle": "Transform your world with our innovative solutions. AI, IoT, and advanced systems.",
-  "viewProducts": "View Products",
-  "ourFeaturedProducts": "Our Featured Products",
-  "viewAllProducts": "View All Products",
-  "aboutUsTitle": "About Smart Company",
-  "aboutUsIntro": "Smart Company leverages cutting-edge knowledge and a specialized team to deliver AI, IoT, and advanced system solutions across various industrial sectors. We are committed to creating a sustainable and intelligent future.",
-  "readyToInnovate": "Ready to Innovate with Us?",
-  "contactUsDescription": "For a free consultation and more information about our solutions, contact us today.",
-
+  "company_name": "قطب دانش و فناوری های مدرن",
+  "nav": {
+    "products": "محصولات",
+    "services": "خدمات",
+    "about": "درباره ما",
+    "contact": "تماس با ما",
+    "lab": "آزمایشگاه دانش",
+    "home": "خانه"
+  }
 }

@@ -9,7 +9,7 @@ import ProductCard from '../components/ProductCard';
 import * as Icons from 'lucide-react';
 import AIPlayground from '../components/AIPlayground'; // <-- کامپوننت جدید را import کنید
 import HeroAurora from '../components/HeroAurora';
-import DashboardShowcase from '@/components/DashboardShowcase';
+import DashboardShowcase from '@/components/DashboardShowcaseFullWidth';
 
 
 // 1. Define the type for an icon name from lucide-react

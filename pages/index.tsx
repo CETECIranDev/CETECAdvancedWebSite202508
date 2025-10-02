@@ -1,236 +1,190 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation, TFunction } from 'next-i18next'; // Import TFunction
+import fs from 'fs';
+import path from 'path';
 import { motion, Variants, Transition } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Cpu, ChevronDown } from 'lucide-react';
-import ProductCard from '../components/ProductCard';
-// We need to import the icons type for our Product interface
+import { ArrowRight, Cpu } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import AIPlayground from '../components/AIPlayground'; // <-- کامپوننت جدید را import کنید
-import HeroAurora from '../components/HeroAurora';
-import DashboardShowcase from '@/components/DashboardShowcase';
-import NeuralNetworkCanvas from '@/components/NeuralNetworkCanvas';
-import PartnerNetwork from "@/components/PartnerNetwork";
-import InteractiveFlow from "@/components/InteractiveFlow";
 
-// 1. Define the type for an icon name from lucide-react
+// Import all the showcase components
+import InteractiveFlow from '../components/InteractiveFlow';
+import PartnerNetwork from '../components/PartnerNetwork';
+import ProductCard from '../components/ProductCard';
+import AIPlayground from '../components/AIPlayground';
+import DashboardShowcase from '../components/DashboardShowcaseFullWidth';
+import NeuralNetworkCanvas from "@/components/NeuralNetworkCanvas";
+import HeroAurora from "@/components/HeroAurora";
+
+// --- Type Definitions ---
 type IconName = keyof typeof Icons;
-
-// 2. Define a specific interface for a single product
 interface Product {
-  title: string;
-  description: string;
-  icon: IconName;
-  link: string;
+    title: string;
+    description: string;
+    icon: IconName;
+    link: string;
 }
 
-// Define types for animation props
+interface HomeProps {
+    products: Product[];
+}
+
+// --- Animation Variants ---
 const pageVariants: Variants = {
-  initial: { opacity: 0, y: 10 },
-  in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -10 },
+    initial: { opacity: 0, y: 10 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: -10 },
 };
 
 const pageTransition: Transition = {
-  type: 'tween',
-  ease: 'easeInOut',
-  duration: 0.5,
+    type: 'tween',
+    ease: 'easeInOut', // Use a valid easing function string
+    duration: 0.5,
 };
 
-// 3. Apply the 'Product[]' type to our products array
-const products: Product[] = [
-  { 
-    title: "سامانه شمارش هوشمند افراد",
-    description: "تحلیل دقیق و آنی جریان جمعیت با هوش مصنوعی.",
-    icon: "Users",
-    link: "/products/people-counting-system"
-  },
-  { 
-    title: "تردد شمار جاده‌ای",
-    description: "داده‌های دقیق ترافیکی با تکنولوژی لوپ‌های القایی.",
-    icon: "Route",
-    link: "/products/road-traffic-counter"
-  },
-  { 
-    title: "پهپاد هوشمند عمود پرواز",
-    description: "نظارت، بازرسی و نقشه‌برداری هوایی با دقت بی‌نظیر.",
-    icon: "Rocket",
-    link: "/products/smart-vtol-drone"
-  },
-  { 
-    title: "دیتا لاگرهای صنعتی",
-    description: "جمع‌آوری و ثبت داده‌های حیاتی با دقت و اطمینان بالا.",
-    icon: "Database",
-    link: "/products/industrial-dataloggers"
-  },
-  { 
-    title: "مدیریت جامع انرژی و IoT",
-    description: "بهینه‌سازی مصرف انرژی و کنترل هوشمند دستگاه‌ها.",
-    icon: "BrainCircuit",
-    link: "/products" // Link to general products page for now
-  }
-  ,
-  { 
-    title: "سامانه واسط مغز و رایانه ",
-    description: "با بهره گیری از یادگیری عمیق برخط و پردازش سیگنال مغزی می توان دنیا را هدایت کرد",
-    icon: "BrainCircuit",
-    link: "/products" // Link to general products page for now
-  }
+// --- Main Home Component ---
+const Home: NextPage<HomeProps> = ({ products }) => {
+    const { t } = useTranslation('home');
 
-];
+    return (
+        <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+        >
+            {/* Hero Section with Interactive Flowchart */}
+            <section className="relative h-screen flex flex-col overflow-hidden">
+                {/* This gradient makes the text more readable at the bottom */}
+                <NeuralNetworkCanvas />
 
-const Home = () => {
-  return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background -z-10"></div>
+                <HeroAurora />
 
-        {/*
-        ==========================================================
-         NEW HERO SECTION WITH SEPARATED CONTENT AND FLOWCHART
-        ==========================================================
-      */}
-        <section className="relative h-screen flex flex-col overflow-hidden">
-            {/* This gradient makes the text more readable at the bottom */}
-            <NeuralNetworkCanvas />
-
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background -z-10"></div>
-            <HeroAurora />
-
-            {/* Top Content Area */}
-            <div className="container mx-auto px-6 pt-32 md:pt-40 text-center z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <h1
-                        className="text-5xl md:text-7xl font-extrabold mb-6 text-foreground"
-                    >
-                        مهندسی جریان داده
-                    </h1>
-                    <p
-                        className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-10"
-                    >
-                        ما داده‌های خام دنیای واقعی را به بینش‌های هوشمند و کاربردی برای کسب‌وکار شما تبدیل می‌کنیم.
-                    </p>
-                    <div className="flex justify-center gap-4">
-                        <Link
-                            href="/products"
-                            className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg"
-                        >
-                            اکتشاف محصولات <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
-                </motion.div>
-            </div>
-
-            {/* Bottom Flowchart Area */}
-            <div className="flex-grow relative mt-16 md:mt-24">
-                <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_10%,white_50%,white_90%,transparent_100%)]">
-                    <InteractiveFlow />
+                <div className="container mx-auto px-6 pt-32 md:pt-40 text-center z-10">
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                        <div className="inline-block bg-card/50 backdrop-blur-sm border border-border rounded-full px-4 py-2 mb-6 text-sm">
+                            <span className="text-primary font-semibold">{t('hero.badge')}</span>
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-display font-extrabold mb-6 text-foreground" style={{ textShadow: '0 0 30px hsl(var(--background)), 0 0 50px hsl(var(--background))' }}>
+                            {t('hero.title')}
+                        </h1>
+                        <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-10">
+                            {t('hero.subtitle')}
+                        </p>
+                        <div className="flex justify-center gap-4">
+                            <Link href="/products" className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg">
+                                {t('hero.primary_cta')} <ArrowRight className="group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1" />
+                            </Link>
+                        </div>
+                    </motion.div>
                 </div>
-            </div>
-        </section>
+                <div className="flex-grow relative mt-16 md:mt-24">
+                    <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_10%,white_50%,white_90%,transparent_100%)]">
+                        <InteractiveFlow />
+                    </div>
+                </div>
+            </section>
 
-        {/* Dashboard Showcase Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div /* ... */ >
-            <h2 className="text-4xl font-bold mb-4">داشبورد یکپارچه هوشمند</h2>
-            <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-16">
-              تمام داده‌های سخت‌افزاری شما در یک پلتفرم نرم‌افزاری قدرتمند و زیبا. با حرکت موس، داشبورد را در فضای سه‌بعدی بچرخانید.
-            </p>
-          </motion.div>
-          <DashboardShowcase /> {/* Renders the new, more complex dashboard */}
-        </div>
-      </section>
-      
-      {/* Products Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Cpu size={48} className="mx-auto text-primary" />
-            <h2 className="text-4xl font-bold mt-4 mb-6">فناوری‌های تحول‌آفرین</h2>
-            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-              از شمارش هوشمند جمعیت تا مدیریت انرژی با IoT، محصولات ما برای افزایش بهره‌وری و پایداری طراحی شده‌اند.
-            </p>
-          </motion.div>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {/* Now TypeScript knows 'product' is of type 'Product' and not undefined */}
-                <ProductCard 
-                  title={product.title}
-                  description={product.description}
-                  icon={product.icon}
-                  link={product.link}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-        {/* NEW: Connected Partner Hub Section */}
+            {/* Partners Section */}
+            <section className="py-24 bg-muted">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl font-display font-bold mb-4 text-foreground">
+                        {t('partners_section.title')}
+                    </motion.h3>
+                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+                        {t('partners_section.subtitle')}
+                    </motion.p>
+                    <PartnerNetwork />
+                </div>
+            </section>
 
-        <section className="py-24 bg-muted">
-            <div className="container mx-auto px-6 text-center">
-                <motion.h3 /* ... */ >اکوسیستم همکاران ما</motion.h3>
-                <motion.p /* ... */ >ما با برترین سازمان‌ها و صنایع همکاری می‌کنیم تا راهکارهای یکپارچه و قدرتمندی خلق کنیم.</motion.p>
-                <PartnerNetwork />
-            </div>
-        </section>
-            {/* NEW: Interactive AI Playground Section */}
-      {/*<section className="py-24">*/}
-      {/*  <div className="container mx-auto px-6">*/}
-      {/*    <motion.div*/}
-      {/*      initial={{ opacity: 0, y: 30 }}*/}
-      {/*      whileInView={{ opacity: 1, y: 0 }}*/}
-      {/*      viewport={{ once: true, amount: 0.3 }}*/}
-      {/*      transition={{ duration: 0.7 }}*/}
-      {/*      className="text-center"*/}
-      {/*    >*/}
-      {/*      <h2 className="text-4xl font-bold mb-4">فناوری ما را در عمل ببینید</h2>*/}
-      {/*      <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-12">*/}
-      {/*        این یک دموی زنده و شبیه‌سازی شده از قدرت پردازش تصویر ماست. با فیلترها بازی کنید و ببینید سیستم ما چگونه اشیاء را به صورت آنی دسته‌بندی می‌کند.*/}
-      {/*      </p>*/}
-      {/*    </motion.div>*/}
-      {/*    */}
-      {/*    <motion.div*/}
-      {/*      initial={{ opacity: 0, scale: 0.95 }}*/}
-      {/*      whileInView={{ opacity: 1, scale: 1 }}*/}
-      {/*      viewport={{ once: true, amount: 0.2 }}*/}
-      {/*      transition={{ duration: 0.8 }}*/}
-      {/*    >*/}
-      {/*      <AIPlayground />*/}
-      {/*    </motion.div>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+            {/* Products Section */}
+            <section className="py-24 bg-background">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                        <Cpu size={48} className="mx-auto text-primary" />
+                        <h2 className="text-4xl font-display font-bold mt-4 mb-6">{t('products_section.title')}</h2>
+                        <p className="text-lg max-w-2xl mx-auto text-muted-foreground">{t('products_section.subtitle')}</p>
+                    </motion.div>
+                    <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {products.map((product, index) => (
+                            <motion.div key={index} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+                                <ProductCard title={product.title} description={product.description} icon={product.icon} link={product.link} />
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-    </motion.div>
-  );
+            {/* AI Playground Section */}
+            <section className="py-24">
+                <div className="container mx-auto px-6">
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
+                        <h2 className="text-4xl font-display font-bold mb-4">{t('ai_playground.title')}</h2>
+                        <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-12">{t('ai_playground.subtitle')}</p>
+                    </motion.div>
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+                        <AIPlayground />
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Dashboard Showcase Section */}
+            <section className="py-24 bg-muted">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} >
+                        <h2 className="text-4xl font-display font-bold mb-4">{t('dashboard_showcase.title')}</h2>
+                        <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-16">{t('dashboard_showcase.subtitle')}</p>
+                    </motion.div>
+                    <DashboardShowcase />
+                </div>
+            </section>
+
+        </motion.div>
+    );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale!, ['common'])),
-  },
-});
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
+    const currentLocale = locale ?? 'fa';
+
+    // Using the robust file reading method
+    const filePath = path.join(process.cwd(), `public/locales/${currentLocale}/home.json`);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const homeTranslations = JSON.parse(fileContent);
+
+    const productKeys = [ 'people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management' ];
+
+    const products: Product[] = productKeys.map(key => {
+        const productData = homeTranslations.products?.[key];
+
+        if (!productData) {
+            console.warn(`Translation for product key "${key}" not found in locale "${currentLocale}".`);
+            return {
+                title: key.replace('_', ' '),
+                description: 'Description not available.',
+                icon: 'AlertTriangle' as IconName,
+                link: '/',
+            };
+        }
+
+        return {
+            title: productData.title,
+            description: productData.description,
+            icon: { 'people_counting': 'Users', 'traffic_counter': 'Route', 'vtol_drone': 'Rocket', 'datalogger': 'Database', 'energy_management': 'BrainCircuit' }[key] as IconName,
+            link: { 'people_counting': '/products/people-counting-system', 'traffic_counter': '/products/road-traffic-counter', 'vtol_drone': '/products/smart-vtol-drone', 'datalogger': '/products/industrial-dataloggers', 'energy_management': '/services' }[key] as string,
+        };
+    });
+
+    return {
+        props: {
+            ...(await serverSideTranslations(currentLocale, ['common', 'home'])),
+            products,
+        },
+    };
+};
 
 export default Home;

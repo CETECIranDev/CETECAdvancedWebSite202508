@@ -148,7 +148,7 @@ const DataLoggerConfigurator: React.FC<DataLoggerConfiguratorProps> = ({ initial
                         <li><strong>حافظه:</strong> {config.memory}</li>
                     </ul>
                     <p className="mt-6 text-sm text-muted-foreground">برای دریافت پیش‌فاکتور نهایی و مشاوره فنی، اطلاعات خود را وارد کرده و درخواست را ارسال کنید.</p>
-                    {/* Add a simple contact form here */}
+                    {/* Add a simple contact.json form here */}
                     <form className="mt-4 space-y-4">
                         <input type="text" placeholder="نام و نام خانوادگی" className="w-full p-3 bg-muted rounded-lg border border-border" />
                         <input type="email" placeholder="ایمیل" className="w-full p-3 bg-muted rounded-lg border border-border" />

@@ -52,7 +52,7 @@ module.exports = {
 
       // 5. Set the default font family for the project
       fontFamily: {
-        sans: ['IRANYekanX', 'sans-serif'],
+        sans: ['Dana', 'sans-serif'],
       },
 
       // 6. Define custom keyframe animations
