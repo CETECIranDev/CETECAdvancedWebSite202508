@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation, TFunction } from 'next-i18next'; // Import TFunction
@@ -46,6 +46,9 @@ const pageTransition: Transition = {
 
 // --- Main Home Component ---
 const Home: NextPage<HomeProps> = ({ products }) => {
+
+  
+
     const { t } = useTranslation('home');
 
     return (
@@ -156,7 +159,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const homeTranslations = JSON.parse(fileContent);
 
-    const productKeys = [ 'people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management' ];
+    const productKeys = ['people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management'];
 
     const products: Product[] = productKeys.map(key => {
         const productData = homeTranslations.products?.[key];
