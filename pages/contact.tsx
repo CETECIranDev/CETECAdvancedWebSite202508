@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import ContactCard from '../components/ContactCard';
 import ContactForms from '../components/ContactForms';
+import Head from 'next/head';
 
 const ContactPage = () => {
   const handleCopyEmail = () => {
@@ -13,6 +14,16 @@ const ContactPage = () => {
   };
 
   return (
+
+      <>
+          <Head>
+              <title>CETEC | قطب دانش و فناوری‌های مدرن - هوش مصنوعی و الکترونیک</title>
+              <meta
+                  name="description"
+                  content="شرکت CETEC، پیشرو در طراحی و تولید سامانه‌های هوشمند مبتنی بر هوش مصنوعی، اینترنت اشیا (IoT) و الکترونیک پیشرفته. راهکارهای نوآورانه برای آینده‌ای هوشمند."
+              />
+              <meta name="keywords" content="هوش مصنوعی, اینترنت اشیا, الکترونیک, پهپاد هوشمند, دیتالاگر صنعتی, CETEC, قطب دانش و فناوری" />
+        </Head>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {/* Hero Section */}
       <section className="py-24 text-center bg-muted">
@@ -98,6 +109,7 @@ const ContactPage = () => {
         </div>
       </section>
     </motion.div>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ import { SlidersHorizontal, Zap, Thermometer , ChevronDown } from 'lucide-react'
 import DataLoggerConfigurator, { DataLoggerConfig } from '../../components/DataLoggerConfigurator'; // Import the component and the type
 import Image from 'next/image';
 import LiveIranMap from '../../components/LiveIranMap'; // <-- کامپوننت جدید را import کنید
-
+import Head from 'next/head';
 // --- Presets for different applications ---
 const presets: { [key: string]: DataLoggerConfig } = {
   shock: {
@@ -72,6 +72,38 @@ const IndustrialDataLoggersPage = () => {
   };
 
   return (
+      <>
+          <Head>
+              <title>دیتالاگر صنعتی | ثبت و مانیتورینگ دقیق داده‌ها | CETEC</title>
+              <meta
+                  name="description"
+                  content="دیتالاگرهای صنعتی و قابل برنامه‌ریزی CETEC برای ثبت و مانیتورینگ دقیق دما، رطوبت، ولتاژ و سایر پارامترهای حیاتی. راهکار قابل اعتماد برای صنایع مختلف."
+              />
+              <meta name="keywords" content="دیتالاگر صنعتی, ثبت کننده داده, مانیتورینگ صنعتی, دیتا لاگر, تجهیزات ابزار دقیق, CETEC" />
+
+              {/* JSON-LD for Rich Snippets */}
+              <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                          "@context": "https://schema.org/",
+                          "@type": "Product",
+                          "name": "دیتالاگرهای صنعتی قابل تنظیم",
+                          "image": "https://yourdomain.com/images/industrial-datalogger-hero.jpg", // آدرس کامل تصویر اصلی محصول
+                          "description": "راهکارهای ماژولار و قابل تنظیم برای ثبت و مانیتورینگ داده‌های صنعتی با دقت و اطمینان بالا.",
+                          "brand": {
+                              "@type": "Brand",
+                              "name": "CETEC"
+                          },
+                          "offers": {
+                              "@type": "Offer",
+                              "url": "https://yourdomain.com/products/industrial-dataloggers",
+                              "priceCurrency": "IRR",
+                              "price": "0",
+                              "availability": "https://schema.org/InStock"
+                          }
+                      }) }}
+              />
+          </Head>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {/* Hero Section */}
         {/*
@@ -176,6 +208,7 @@ const IndustrialDataLoggersPage = () => {
         </motion.section>
       )}
     </motion.div>
+          </>
   );
 };
 

@@ -7,6 +7,25 @@ import { Target, Eye, Lightbulb, Users, Handshake, Link as LinkIcon } from 'luci
 import Timeline from '../components/Timeline';
 import ContactForms from '../components/ContactForms';
 import FloatingShapes from '../components/FloatingShapes';
+import Head from "next/head";
+
+
+const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CETEC | قطب دانش و فناوری‌های مدرن",
+    "alternateName": "Center of Excellence in Technologies",
+    "url": "https://cetec.ir/",
+    "logo": "https://cetec.ir/logo.png", // URL لوگوی شما
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+98-13-33328474",
+        "contactType": "customer service"
+    },
+    "sameAs": [ // لینک شبکه‌های اجتماعی
+        "https://www.linkedin.com/company/your-company",
+    ]
+};
 
 // --- Animation Variants with Correct Types ---
 const viewportSettings: ViewportOptions = { once: true, amount: 0.3 };
@@ -43,6 +62,19 @@ const AboutPage: NextPage = () => {
     const { t } = useTranslation('about');
 
     return (
+        <>
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+                />
+                <title>CETEC | قطب دانش و فناوری‌های مدرن - هوش مصنوعی و الکترونیک</title>
+                <meta
+                    name="description"
+                    content="شرکت CETEC، پیشرو در طراحی و تولید سامانه‌های هوشمند مبتنی بر هوش مصنوعی، اینترنت اشیا (IoT) و الکترونیک پیشرفته. راهکارهای نوآورانه برای آینده‌ای هوشمند."
+                />
+                <meta name="keywords" content="هوش مصنوعی, اینترنت اشیا, الکترونیک, پهپاد هوشمند, دیتالاگر صنعتی, CETEC, قطب دانش و فناوری" />
+            </Head>
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -164,6 +196,7 @@ const AboutPage: NextPage = () => {
             </section>
 
         </motion.div>
+        </>
     );
 };
 

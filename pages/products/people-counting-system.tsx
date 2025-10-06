@@ -6,7 +6,7 @@ import { motion, Variants, ViewportOptions } from 'framer-motion';
 import { Users, BarChartBig, Cpu, Lock, ShoppingCart, Plane, Calendar, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import Head from 'next/head';
 // Import Custom Components
 import LiveTrafficChart from '../../components/charts/LiveTrafficChart';
 import StatCounter from '../../components/StatCounter';
@@ -96,6 +96,38 @@ const PeopleCountingPage: NextPage = () => {
     });
 
     return (
+        <>
+        <Head>
+            <title>سامانه شمارش هوشمند افراد | تحلیل جمعیت با هوش مصنوعی | CETEC</title>
+            <meta
+                name="description"
+                content="با سامانه شمارش هوشمند افراد CETEC، آمار دقیق تردد، جنسیت و سن را با دقت بالا دریافت کنید. راهکار هوشمند برای مدیریت فضاهای تجاری، رویدادها و مراکز عمومی."
+            />
+            <meta name="keywords" content="شمارش هوشمند افراد, شمارشگر جمعیت, تحلیل ویدئویی, تشخیص جنسیت و سن, هوش مصنوعی, بینایی ماشین, CETEC" />
+
+            {/* JSON-LD for Rich Snippets */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                        "@context": "https://schema.org/",
+                        "@type": "Product",
+                        "name": "سامانه شمارش هوشمند افراد",
+                        "image": "https://yourdomain.com/images/people-counting-hero.jpg", // آدرس کامل تصویر اصلی محصول
+                        "description": "سامانه پیشرفته مبتنی بر هوش مصنوعی برای شمارش و تحلیل دقیق جمعیت در فضاهای مختلف.",
+                        "brand": {
+                            "@type": "Brand",
+                            "name": "CETEC"
+                        },
+                        "offers": {
+                            "@type": "Offer",
+                            "url": "https://yourdomain.com/products/people-counting-system",
+                            "priceCurrency": "IRR",
+                            "price": "0", // چون قیمت تماس بگیرید است، صفر می‌گذاریم
+                            "availability": "https://schema.org/InStock"
+                        }
+                    }) }}
+            />
+        </Head>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
             {/* Hero Section */}
             <section className="relative h-screen flex items-center justify-center text-center p-6 overflow-hidden">
@@ -191,6 +223,7 @@ const PeopleCountingPage: NextPage = () => {
                 </div>
             </section>
         </motion.div>
+        </>
     );
 };
 

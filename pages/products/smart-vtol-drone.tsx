@@ -8,6 +8,7 @@ import Link from 'next/link';
 import InteractiveAnatomy from '../../components/InteractiveAnatomy';
 import Image from 'next/image'; // Import Next.js Image component
 import DroneTelemetryUI from '../../components/DroneTelemetryUI'; // <-- کامپوننت جدید را import کنید
+import Head from "next/head";
 
 // 1. Define the viewport options with the correct type
 const viewportSettings: ViewportOptions = { once: true, amount: 0.2 };
@@ -40,7 +41,41 @@ const CapabilityCard: React.FC<{ icon: React.ReactNode; title: string; descripti
 );
 
 const SmartVtolDronePage = () => {
+
+
   return (
+      <>
+          <Head>
+              <title>پهپاد هوشمند عمود پرواز (VTOL) | نقشه برداری و نظارت | CETEC</title>
+              <meta
+                  name="description"
+                  content="پهپاد VTOL هوشمند Horizon X1 از CETEC، راهکاری پیشرفته برای نقشه برداری دقیق، بازرسی صنعتی و نظارت هوایی. پرواز و فرود عمودی با مداومت پروازی بالا."
+              />
+              <meta name="keywords" content="پهپاد عمود پرواز, پهپاد VTOL, نقشه برداری هوایی, بازرسی صنعتی با پهپاد, پهپاد هوشمند, CETEC" />
+
+              {/* JSON-LD for Rich Snippets */}
+              <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                          "@context": "https://schema.org/",
+                          "@type": "Product",
+                          "name": "پهپاد هوشمند عمود پرواز (VTOL) - Horizon X1",
+                          "image": "https://yourdomain.com/images/vtol-drone-hero.jpg", // آدرس کامل تصویر اصلی محصول
+                          "description": "پهپاد پیشرفته با قابلیت پرواز و فرود عمودی برای ماموریت‌های نظارت، بازرسی و نقشه برداری.",
+                          "brand": {
+                              "@type": "Brand",
+                              "name": "CETEC"
+                          },
+                          "offers": {
+                              "@type": "Offer",
+                              "url": "https://yourdomain.com/products/smart-vtol-drone",
+                              "priceCurrency": "IRR",
+                              "price": "0",
+                              "availability": "https://schema.org/InStock"
+                          }
+                      }) }}
+              />
+          </Head>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-background text-foreground">
       {/* Hero Section */}
             <section className="relative h-screen flex items-center justify-center text-center p-6 overflow-hidden">
@@ -241,6 +276,7 @@ const SmartVtolDronePage = () => {
         </div>
       </section>
     </motion.div>
+    </>
   );
 };
 

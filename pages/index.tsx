@@ -17,6 +17,7 @@ import AIPlayground from '../components/AIPlayground';
 import DashboardShowcase from '../components/DashboardShowcaseFullWidth';
 import NeuralNetworkCanvas from "@/components/NeuralNetworkCanvas";
 import HeroAurora from "@/components/HeroAurora";
+import Head from 'next/head';
 
 // --- Type Definitions ---
 type IconName = keyof typeof Icons;
@@ -52,6 +53,16 @@ const Home: NextPage<HomeProps> = ({ products }) => {
     const { t } = useTranslation('home');
 
     return (
+
+        <>
+        <Head>
+            <title>CETEC | قطب دانش و فناوری‌های مدرن - هوش مصنوعی و الکترونیک</title>
+            <meta
+                name="description"
+                content="شرکت CETEC، پیشرو در طراحی و تولید سامانه‌های هوشمند مبتنی بر هوش مصنوعی، اینترنت اشیا (IoT) و الکترونیک پیشرفته. راهکارهای نوآورانه برای آینده‌ای هوشمند."
+            />
+            <meta name="keywords" content="هوش مصنوعی, اینترنت اشیا, الکترونیک, پهپاد هوشمند, دیتالاگر صنعتی, CETEC, قطب دانش و فناوری" />
+        </Head>
         <motion.div
             initial="initial"
             animate="in"
@@ -148,6 +159,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
             </section>
 
         </motion.div>
+        </>
     );
 };
 

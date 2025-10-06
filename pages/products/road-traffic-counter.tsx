@@ -10,6 +10,7 @@ import StatCounter from '../../components/StatCounter';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import AnimatedRoad from '../../components/animations/AnimatedRoad'; // Assuming AnimatedRoad is created
 import Image from 'next/image'; // Import Next.js Image component
+import Head from 'next/head';
 
 // 1. Define the viewport options with the correct type
 const viewportSettings: ViewportOptions = { once: true, amount: 0.2 };
@@ -35,7 +36,40 @@ const pieData = [
 const COLORS = ['#60A5FA', '#34D399', '#FBBF24'];
 
 const RoadTrafficCounterPage = () => {
-  return (
+
+    return (
+        <>
+        <Head>
+            <title>تردد شمار جاده‌ای با لوپ القایی | شمارش دقیق خودرو | CETEC</title>
+            <meta
+                name="description"
+                content="سامانه تردد شمار جاده‌ای CETEC با استفاده از لوپ‌های القایی، داده‌های دقیق و قابل اعتمادی از حجم ترافیک، سرعت و طبقه‌بندی خودروها ارائه می‌دهد."
+            />
+            <meta name="keywords" content="تردد شمار جاده ای, لوپ القایی, شمارشگر خودرو, مدیریت ترافیک, حمل و نقل هوشمند, CETEC" />
+
+            {/* JSON-LD for Rich Snippets */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                        "@context": "https://schema.org/",
+                        "@type": "Product",
+                        "name": "سامانه تردد شمار جاده‌ای با لوپ القایی",
+                        "image": "https://yourdomain.com/images/road-traffic-hero.jpg", // آدرس کامل تصویر اصلی محصول
+                        "description": "سیستم قابل اطمینان برای جمع‌آوری داده‌های ترافیکی دقیق در جاده‌ها و بزرگراه‌ها.",
+                        "brand": {
+                            "@type": "Brand",
+                            "name": "CETEC"
+                        },
+                        "offers": {
+                            "@type": "Offer",
+                            "url": "https://yourdomain.com/products/road-traffic-counter",
+                            "priceCurrency": "IRR",
+                            "price": "0",
+                            "availability": "https://schema.org/InStock"
+                        }
+                    }) }}
+            />
+        </Head>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-background text-foreground">
       {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center text-center p-6 overflow-hidden">
@@ -187,6 +221,7 @@ const RoadTrafficCounterPage = () => {
         </div>
       </section>
     </motion.div>
+        </>
   );
 };
 
