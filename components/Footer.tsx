@@ -1,14 +1,22 @@
 // components/Footer.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Zap, Github, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
+  
   const { t } = useTranslation('common');
+  const [views, setViews] = useState(0);
+  useEffect(() => {
+    fetch('/api/views/home')
+      .then(res => res.json())
+      .then(data => setViews(data.views));
+  }, []);
+
 
   return (
-    <footer className="bg-card-light dark:bg-card-dark mt-20 border-t border-border-light dark:border-border-dark">
+    <footer className="bg-card-light dark:bg-card-dark mt-20 border-t border-border-light dark:border-border-dark relative">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
@@ -41,6 +49,8 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} {t('CETEC') || 'شرکت قطب دانش و فناوری های مدرن پارس'}. {t('all Rights Reserved') || 'تمامی حقوق برای شرکت قطب دانش و فناوری های پارس محفوظ است.'}</p>
         </div>
       </div>
+      <div className='text-[14px] border border-[#ffffff31] w-fit px-5 py-2 rounded-full absolute bottom-5 left-5 z-[9999999] backdrop-blur-lg'> تعداد بازدید : {views}</div>
+
     </footer>
   );
 };

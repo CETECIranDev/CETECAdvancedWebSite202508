@@ -18,13 +18,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   }, []);
 
 
-  const [views, setViews] = useState(0);
-  useEffect(() => {
-    fetch('/api/views/home')
-      .then(res => res.json())
-      .then(data => setViews(data.views));
-  }, []);
-
 
   useEffect(() => {
     if (isMounted) {
@@ -40,7 +33,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <div className='text-[14px] border border-[#ffffff31] w-fit px-5 py-2 rounded-full fixed bottom-5 left-5 z-[9999999] backdrop-blur-lg'> تعداد بازدید : {views}</div>
       <Header toggleTheme={toggleTheme} currentTheme={theme} isMounted={isMounted} />
       <AnimatePresence mode="wait">
         <main className="flex-grow" key={router.route}>
