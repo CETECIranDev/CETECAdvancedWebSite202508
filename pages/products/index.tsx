@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<ProductsPageProps> = async ({ locale
     // This logic is the same as in pages/index.tsx
     const homeTranslations = await import(`../../public/locales/${currentLocale}/home.json`);
 
-    const productKeys = [ 'people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management' ];
+    const productKeys = [ 'people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management' , 'smart_hospital'];
 
     const products: Product[] = productKeys.map(key => {
         const productData = homeTranslations.products?.[key];
@@ -70,8 +70,8 @@ export const getStaticProps: GetStaticProps<ProductsPageProps> = async ({ locale
         return {
             title: productData.title,
             description: productData.description,
-            icon: { 'people_counting': 'Users', 'traffic_counter': 'Route', 'vtol_drone': 'Rocket', 'datalogger': 'Database', 'energy_management': 'BrainCircuit' }[key] as IconName,
-            link: { 'people_counting': '/products/people-counting-system', 'traffic_counter': '/products/road-traffic-counter', 'vtol_drone': '/products/smart-vtol-drone', 'datalogger': '/products/industrial-dataloggers', 'energy_management': '/services' }[key] as string,
+            icon: { 'people_counting': 'Users', 'traffic_counter': 'Route', 'vtol_drone': 'Rocket', 'datalogger': 'Database', 'energy_management': 'BrainCircuit' ,'smart_hospital' : 'BrainCircuit'  }[key] as IconName,
+            link: { 'people_counting': '/products/people-counting-system', 'traffic_counter': '/products/road-traffic-counter', 'vtol_drone': '/products/smart-vtol-drone', 'datalogger': '/products/industrial-dataloggers', 'energy_management': '/services'  , 'smart_hospital' : '/services' }[key] as string,
         };
     });
 

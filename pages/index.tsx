@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation, TFunction } from 'next-i18next'; // Import TFunction
+
 import fs from 'fs';
 import path from 'path';
 import { motion, Variants, Transition } from 'framer-motion';
@@ -48,8 +49,6 @@ const pageTransition: Transition = {
 // --- Main Home Component ---
 const Home: NextPage<HomeProps> = ({ products }) => {
 
-  
-
     const { t } = useTranslation('home');
 
     return (
@@ -74,6 +73,10 @@ const Home: NextPage<HomeProps> = ({ products }) => {
             <section className="relative h-screen flex flex-col overflow-hidden">
                 {/* This gradient makes the text more readable at the bottom */}
                 <NeuralNetworkCanvas />
+                {/* This gradient makes the text more readable at the bottom */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background -z-10"></div>
+                <HeroAurora />
+
 
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background -z-10"></div>
                 <HeroAurora />
@@ -103,16 +106,14 @@ const Home: NextPage<HomeProps> = ({ products }) => {
                 </div>
             </section>
 
-            {/* Partners Section */}
+            {/* Dashboard Showcase Section */}
             <section className="py-24 bg-muted">
                 <div className="container mx-auto px-6 text-center">
-                    <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl font-display font-bold mb-4 text-foreground">
-                        {t('partners_section.title')}
-                    </motion.h3>
-                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-                        {t('partners_section.subtitle')}
-                    </motion.p>
-                    <PartnerNetwork />
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} >
+                        <h2 className="text-4xl font-display font-bold mb-4">{t('dashboard_showcase.title')}</h2>
+                        <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-16">{t('dashboard_showcase.subtitle')}</p>
+                    </motion.div>
+                    <DashboardShowcase />
                 </div>
             </section>
 
@@ -134,29 +135,34 @@ const Home: NextPage<HomeProps> = ({ products }) => {
                 </div>
             </section>
 
-            {/* AI Playground Section */}
-            <section className="py-24">
-                <div className="container mx-auto px-6">
-                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
-                        <h2 className="text-4xl font-display font-bold mb-4">{t('ai_playground.title')}</h2>
-                        <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-12">{t('ai_playground.subtitle')}</p>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-                        <AIPlayground />
-                    </motion.div>
+            {/* Partners Section */}
+            <section className="py-24 bg-muted">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl font-display font-bold mb-4 text-foreground">
+                        {t('partners_section.title')}
+                    </motion.h3>
+                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+                        {t('partners_section.subtitle')}
+                    </motion.p>
+                    <PartnerNetwork />
                 </div>
             </section>
 
-            {/* Dashboard Showcase Section */}
-            <section className="py-24 bg-muted">
-                <div className="container mx-auto px-6 text-center">
-                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} >
-                        <h2 className="text-4xl font-display font-bold mb-4">{t('dashboard_showcase.title')}</h2>
-                        <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-16">{t('dashboard_showcase.subtitle')}</p>
-                    </motion.div>
-                    <DashboardShowcase />
-                </div>
-            </section>
+
+
+            {/*/!* AI Playground Section *!/*/}
+            {/*<section className="py-24">*/}
+            {/*    <div className="container mx-auto px-6">*/}
+            {/*        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">*/}
+            {/*            <h2 className="text-4xl font-display font-bold mb-4">{t('ai_playground.title')}</h2>*/}
+            {/*            <p className="text-lg max-w-3xl mx-auto text-muted-foreground mb-12">{t('ai_playground.subtitle')}</p>*/}
+            {/*        </motion.div>*/}
+            {/*        <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>*/}
+            {/*            <AIPlayground />*/}
+            {/*        </motion.div>*/}
+            {/*    </div>*/}
+            {/*</section>*/}
+
 
         </motion.div>
         </>
@@ -171,7 +177,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const homeTranslations = JSON.parse(fileContent);
 
-    const productKeys = ['people_counting', 'traffic_counter', 'vtol_drone', 'datalogger', 'energy_management'];
+    const productKeys = ['people_counting', 'traffic_counter', 'smart_vtol', 'datalogger', 'energy_management' , 'smart_hospital'];
 
     const products: Product[] = productKeys.map(key => {
         const productData = homeTranslations.products?.[key];
@@ -189,8 +195,9 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
         return {
             title: productData.title,
             description: productData.description,
-            icon: { 'people_counting': 'Users', 'traffic_counter': 'Route', 'vtol_drone': 'Rocket', 'datalogger': 'Database', 'energy_management': 'BrainCircuit' }[key] as IconName,
-            link: { 'people_counting': '/products/people-counting-system', 'traffic_counter': '/products/road-traffic-counter', 'vtol_drone': '/products/smart-vtol-drone', 'datalogger': '/products/industrial-dataloggers', 'energy_management': '/services' }[key] as string,
+            icon: { 'people_counting': 'Users', 'traffic_counter': 'Route', 'smart_vtol': 'Rocket', 'datalogger': 'Database', 'energy_management': 'BrainCircuit' , 'smart_hospital' : 'BrainCircuit' }[key] as IconName,
+            link: { 'people_counting': '/products/people-counting-system', 'traffic_counter': '/products/road-traffic-counter', 'smart_vtol': '/products/smart-vtol-drone',
+                'datalogger': '/products/industrial-dataloggers', 'energy_management': '/services' , 'smart_hospital' : '/services', }[key] as string,
         };
     });
 

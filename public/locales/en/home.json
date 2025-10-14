@@ -23,7 +23,7 @@
       "title": "Road Traffic Counter",
       "description": "Accurate traffic data with inductive loop technology."
     },
-    "vtol_drone": {
+    "smart_vtol": {
       "title": "Smart VTOL Drone",
       "description": "Unmatched precision in aerial surveillance and mapping."
     },
@@ -32,6 +32,10 @@
       "description": "Reliable and accurate collection of critical mission data."
     },
     "energy_management": {
+      "title": "Comprehensive Energy & IoT Management",
+      "description": "Optimize energy consumption and smart device control."
+    },
+    "smart_hospital": {
       "title": "Comprehensive Energy & IoT Management",
       "description": "Optimize energy consumption and smart device control."
     }

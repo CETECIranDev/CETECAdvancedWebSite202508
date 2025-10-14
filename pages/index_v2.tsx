@@ -7,7 +7,7 @@ import { ArrowRight, Cpu, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 // We need to import the icons type for our Product interface
 import * as Icons from 'lucide-react';
-import AIPlayground from '../components/AIPlayground'; // <-- کامپوننت جدید را import کنید
+import AIPlayground from '../components/AIPlayground';
 import HeroAurora from '../components/HeroAurora';
 import DashboardShowcase from '@/components/DashboardShowcaseFullWidth';
 import NeuralNetworkCanvas from '@/components/NeuralNetworkCanvas';
@@ -230,7 +230,7 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
           >
-            <AIPlayground />
+            {/*<AIPlayground />*/}
           </motion.div>
         </div>
       </section>
