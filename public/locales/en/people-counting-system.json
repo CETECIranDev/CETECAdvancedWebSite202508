@@ -37,20 +37,31 @@
     }
   },
   "use_cases_section": {
-    "title": "Applications Across Industries"
+    "title": "کاربردهای گسترده در صنایع مختلف"
+  },
+  "categories": {
+    "retail": "تجاری و خرده‌فروشی",
+    "transport": "حمل و نقل عمومی",
+    "cultural": "فرهنگی و آموزشی",
+    "urban": "شهری و اداری"
   },
   "use_cases": {
     "retail": {
-      "title": "Shopping Malls & Retail",
-      "description": "Analyze customer behavior, optimize layouts, and manage queues."
+      "malls": { "title": "مراکز خرید", "description": "تحلیل رفتار مشتری و بهینه‌سازی چیدمان." },
+      "banks": { "title": "بانک‌ها", "description": "مدیریت هوشمند صف‌ها و تخصیص منابع." }
     },
     "transport": {
-      "title": "Airports & Terminals",
-      "description": "Manage passenger flow, allocate resources, and enhance security."
+      "airports": { "title": "فرودگاه‌ها", "description": "مدیریت جریان مسافران و افزایش امنیت." },
+      "stations": { "title": "ایستگاه‌های قطار و مترو", "description": "کنترل تراکم در سکوها و گیت‌های ورودی." }
     },
-    "events": {
-      "title": "Events & Exhibitions",
-      "description": "Control capacity, manage safety, and evaluate event success."
+    "cultural": {
+      "museums": { "title": "موزه‌ها و مراکز فرهنگی", "description": "تحلیل محبوبیت آثار و مدیریت بازدیدکنندگان." },
+      "libraries": { "title": "کتابخانه‌ها", "description": "بررسی ساعات اوج مراجعه و بهینه‌سازی فضا." },
+      "universities": { "title": "دانشگاه‌ها", "description": "مدیریت تردد در فضاهای عمومی و کلاس‌ها." }
+    },
+    "urban": {
+      "offices": { "title": "ادارات و سازمان‌ها", "description": "بهینه‌سازی استفاده از فضاهای کاری و اتاق جلسات." },
+      "smart_cities": { "title": "شهرهای هوشمند", "description": "تحلیل الگوهای تردد شهری برای برنامه‌ریزی بهتر." }
     }
   },
   "pricing_section": {

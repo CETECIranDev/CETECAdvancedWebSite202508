@@ -7,11 +7,12 @@ import { Users, BarChartBig, Cpu, Lock, ShoppingCart, Plane, Calendar, ChevronDo
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
-// Import Custom Components
+import UseCaseGrid from '../../components/UseCaseGrid'
 import LiveTrafficChart from '../../components/charts/LiveTrafficChart';
 import StatCounter from '../../components/StatCounter';
 import PricingCard from '../../components/PricingCard';
 import BillingToggle from '../../components/BillingToggle';
+import TechSpecCatalog from '../../components/TechSpecCatalog';
 
 // --- Animation Variants ---
 const viewportSettings: ViewportOptions = { once: true, amount: 0.3 };
@@ -184,17 +185,56 @@ const PeopleCountingPage: NextPage = () => {
                 </div>
             </section>
 
-            {/* Use Cases Section */}
-            <section className="py-24 bg-background text-foreground">
+            {/*
+        ==========================================================
+         NEW: Interactive Tech Spec Catalog Section
+        ==========================================================
+      */}
+            <section className="py-24 bg-muted">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-4xl font-bold text-center mb-12">{t('use_cases_section.title')}</h2>
-                    <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportSettings} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <UseCaseCard icon={<ShoppingCart size={40} />} title={t('use_cases.retail.title')} description={t('use_cases.retail.description')} />
-                        <UseCaseCard icon={<Plane size={40} />} title={t('use_cases.transport.title')} description={t('use_cases.transport.description')} />
-                        <UseCaseCard icon={<Calendar size={40} />} title={t('use_cases.events.title')} description={t('use_cases.events.description')} />
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl font-bold text-center mb-16 text-foreground"
+                    >
+                        {t('tech_specs_section.title')}
+                    </motion.h2>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        <TechSpecCatalog />
                     </motion.div>
                 </div>
             </section>
+
+            {/*/!* Use Cases Section *!/*/}
+            {/*<section className="py-24 bg-background text-foreground">*/}
+            {/*    <div className="container mx-auto px-6">*/}
+            {/*        <h2 className="text-4xl font-bold text-center mb-12">{t('use_cases_section.title')}</h2>*/}
+            {/*        <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportSettings} className="grid grid-cols-1 md:grid-cols-3 gap-8">*/}
+            {/*            <UseCaseCard icon={<ShoppingCart size={40} />} title={t('use_cases.retail.title')} description={t('use_cases.retail.description')} />*/}
+            {/*            <UseCaseCard icon={<Plane size={40} />} title={t('use_cases.transport.title')} description={t('use_cases.transport.description')} />*/}
+            {/*            <UseCaseCard icon={<Calendar size={40} />} title={t('use_cases.events.title')} description={t('use_cases.events.description')} />*/}
+            {/*        </motion.div>*/}
+            {/*    </div>*/}
+            {/*</section>*/}
+
+
+
+            {/* NEW: Interactive Use Cases Section */}
+            <section className="py-24 bg-background text-foreground">
+                <div className="container mx-auto px-6">
+                    <h2 className="text-4xl font-bold text-center mb-12">{t('use_cases_section.title')}</h2>
+                    <UseCaseGrid />
+                </div>
+            </section>
+
+
 
             {/* Pricing Section */}
             <section id="pricing" className="py-24 bg-muted">
