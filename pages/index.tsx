@@ -20,6 +20,7 @@ import NeuralNetworkCanvas from "@/components/NeuralNetworkCanvas";
 import HeroAurora from "@/components/HeroAurora";
 import Head from 'next/head';
 
+
 // --- Type Definitions ---
 type IconName = keyof typeof Icons;
 interface Product {
@@ -147,6 +148,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
                     <PartnerNetwork />
                 </div>
             </section>
+        
 
 
 

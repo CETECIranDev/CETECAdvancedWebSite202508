@@ -47,5 +47,11 @@
   "dashboard_showcase": {
     "title": "Unified Smart Dashboard",
     "subtitle": "All your hardware data in one powerful, elegant software platform. Move your mouse to rotate the dashboard in 3D space."
+  },
+  "main": {
+        "brainComputer": "Build Brain-Computer Interfaces Visually",
+        "brainComputerParagraph": "BCI Studio is a comprehensive visual platform for designing, testing, and deploying brain-computer interface pipelines. Create powerful BCI applications without complex coding through our intuitive drag-and-drop interface.",
+        "requestDemo": "Request a Demo",
+        "intro": "Watch 2-Min Intro"
   }
 }

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,10 +17,11 @@ const productsData = [
     { name_fa: 'تردد شمار جاده‌ای', name_en: 'Road Traffic Counter', href: '/products/road-traffic-counter', icon: Route },
     { name_fa: 'دیتالاگرهای صنعتی', name_en: 'Industrial Data Loggers', href: '/products/industrial-dataloggers', icon: Route },
     { name_fa: 'پهپاد هوشمند VTOL', name_en: 'Smart VTOL Drone', href: '/products/smart-vtol-drone', icon: Rocket },
+    { name_fa: 'رابط مغز و رایانه', name_en: 'Brain-Computer Interfaces', href: '/products/brain-computer', icon: Rocket },
 ];
 
 const Header: React.FC<HeaderProps> = ({ toggleTheme, currentTheme, isMounted }) => {
-    const { t, i18n } = useTranslation('common');
+    const { t , i18n } = useTranslation('common');
     const router = useRouter();
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -57,7 +59,9 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, currentTheme, isMounted })
                 <div className="px-6 py-3 flex justify-between items-center">
                     <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary">
                         <motion.div whileHover={{ rotate: 15 }}><Zap size={28} /></motion.div>
-                        <span>{t('company_name')}</span>
+                        <span>
+                            {t('nav.company_name')}
+                        </span>
                     </Link>
 
                     <nav className="hidden md:flex items-center gap-2">

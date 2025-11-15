@@ -93,6 +93,16 @@
     --border: 240 6% 90%;     /* #E4E4E7 - A very light gray border */
     --input: 240 6% 90%;
     --ring: 221 83% 53%;
+
+    --monitor: #35359aba;
+    --monitor-page: #00000057;
+    --text-base-gradient: #4452ac;
+    --text-wh-gradient: #0000009a;
+
+    --text: #000;
+    --paragraph: #133568cf;
+    --box-base-gradient: #2491c0;
+    --box-wh-gradient: #7768c2;
   }
 
   .dark {
@@ -115,6 +125,14 @@
     --border: 217 33% 25%;
     --input: 217 33% 25%;
     --ring: 217 91% 60%;
+    --monitor: #2e2e51;
+    --monitor-page: #161639;
+    --text-base-gradient: #00d4ff;
+    --text-wh-gradient: #fff;
+    --text: #fff;
+    --paragraph:  #d1d5db;
+    --box-base-gradient: #142d39;
+    --box-wh-gradient: #211170;
   }
 }
 

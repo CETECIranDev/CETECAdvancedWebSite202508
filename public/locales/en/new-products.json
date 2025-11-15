@@ -1,0 +1,46 @@
+{
+    "main": {
+        "brainComputer": "Build Brain-Computer Interfaces Visually",
+        "brainComputerParagraph": "BCI Studio is a comprehensive visual platform for designing, testing, and deploying brain-computer interface pipelines. Create powerful BCI applications without complex coding through our intuitive drag-and-drop interface.",
+        "requestDemo": "Request a Demo",
+        "intro": "Watch 2-Min Intro"
+    },
+    "discovering":{
+        "stopCoding": "Stop Coding, Start Discovering.",
+        "stopCodingParagraph": "Powerful tools that make BCI development accessible to researchers, engineers, and innovators worldwide.",
+        "visualEditor": "Visual Pipeline Editor",
+        "visualEditorParagraph": "Build complex signal processing pipelines with intuitive drag-and-drop components. No coding required.",
+        "realTimeVisualization": "Real-time Visualization",
+        "realTimeVisualizationParagraph": "Monitor raw signals, filtered data, and model outputs in real-time with interactive visualizations.",
+        "componentLibraray": "Rich Component Library",
+        "componentLibrarayParagraph": "Access dozens of pre-built blocks for filtering, feature extraction, and machine learning algorithms.",
+        "pluginSystem": "Extensible Plugin System",
+        "pluginSystemParagraph": "Easily add custom algorithms and blocks to the platform with our flexible plugin architecture."
+    },
+    "workflow":{
+        "workflow": "Your Entire BCI Workflow in One Place",
+        "workflowParagraph": "From data acquisition to deployment, streamline your entire BCI development process.",
+        "connect": "Connect",
+        "connectParagraph": "Connect to any EEG device - Emotiv, OpenBCI, and more.",
+        "design": "Design",
+        "designParagraph": "Visually design your pipeline with connected blocks.",
+        "visualize": "Run & Visualize",
+        "visualizeParagraph": "Execute and monitor results in real-time and enjoy.",
+        "deploy": "Deploy",
+        "deployParagraph": "Deploy your pipeline to embedded hardware."
+    },
+    "power":{
+        "power": "Unlock the Power of the Mind",
+        "powerParagraph": "Explore the endless possibilities of brain-computer interfaces across multiple domains.",
+        "communication": "Assistive Communication",
+        "communicationParagraph": "P300 Speller systems for individuals with motor disabilities to communicate through thought.",
+        "neuroprosthetics": "Neuroprosthetics & Control",
+        "neuroprostheticsParagraph": "Motor imagery systems for controlling robotic limbs and assistive devices.",
+        "control": "High-Speed BCI Control",
+        "controlParagraph": "SSVEP-based systems for rapid control of drones, wheelchairs, and smart environments.",
+        "training": "Cognitive Training & Rehabilitation",
+        "trainingParagraph": "Neurofeedback systems for cognitive enhancement and neurological rehabilitation.",
+        "beyondBCI": "Beyond BCI: ECG, EMG & More",
+        "beyondBCIParagraph": "Extend beyond brain signals to heart, muscle, and other biosignal processing applications."
+    }
+}

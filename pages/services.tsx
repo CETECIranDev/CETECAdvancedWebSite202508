@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { motion } from 'framer-motion';
 import InteractiveServices from '../components/InteractiveServices';
 import Link from 'next/link';
+import Header from '@/components/Header';
 
 const ServicesPage = () => {
   return (
@@ -46,6 +47,7 @@ const ServicesPage = () => {
         </motion.div>
       </section>
     </motion.div>
+    
   );
 };
 
