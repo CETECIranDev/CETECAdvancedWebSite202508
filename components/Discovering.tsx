@@ -37,7 +37,7 @@ export default function Discovering() {
     ]
 
   return (
-    <div className={`z-10 text-center lg:mx-40 mx-10 font-inter ${i18n.language === "en" ? "font-inter" : "font-vazirMatn"}`} style={{direction: i18n.language === "en" ? "ltr" : "rtl"}}>
+    <div className={`z-10 text-center lg:mx-40 mx-10 mt-10 font-inter ${i18n.language === "en" ? "font-inter" : "font-vazirMatn"}`} style={{direction: i18n.language === "en" ? "ltr" : "rtl"}}>
       <div className='flex flex-col justify-center items-center'>
         <h2 className=' bg-[linear-gradient(135deg,var(--text-wh-gradient),var(--text-base-gradient))] bg-clip-text text-transparent font-bold text-[40px]'>{t("discovering.stopCoding")}</h2>
         <p className='mt-4 text-[var(--paragraph)] max-w-xl text-center leading-relaxed text-[18px]'>{t("discovering.stopCodingParagraph")}</p>

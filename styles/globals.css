@@ -94,7 +94,7 @@
     --input: 240 6% 90%;
     --ring: 221 83% 53%;
 
-    --monitor: #35359aba;
+    --monitor: #35359a;
     --monitor-page: #00000057;
     --text-base-gradient: #4452ac;
     --text-wh-gradient: #0000009a;
@@ -297,6 +297,7 @@
     stroke-dasharray: 5;
     animation: dashdraw 0.5s linear infinite;
 }
+
 
 @keyframes dashdraw {
     from {
