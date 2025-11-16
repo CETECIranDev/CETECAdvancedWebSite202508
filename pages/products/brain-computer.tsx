@@ -16,11 +16,11 @@ export default function BrainComputer() {
       <Power></Power>
     </div>
   )
-  
+
 }
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale!, ['new-products','common'])),
+    ...(await serverSideTranslations(locale!, ['new-products', 'common'])),
   },
 });
 

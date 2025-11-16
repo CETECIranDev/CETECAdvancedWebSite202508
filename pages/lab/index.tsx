@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import fs from 'fs';
 import path from 'path';
@@ -73,7 +73,7 @@ const LabPage: React.FC<LabPageProps> = ({ posts }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const files = fs.readdirSync(path.join('_posts'));
 
   const posts = files.map(filename => {
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       frontmatter,
     };
   });
-  
+
   // Sort posts by date in descending order
   const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 

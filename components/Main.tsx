@@ -14,7 +14,7 @@ export default function Main() {
           {/* background image */}
           <div className="absolute inset-0 z-0">
           <img 
-            src='/images/brain-computer.jpg'
+            src='/images/1231.webp'
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/70 z-50"></div>
